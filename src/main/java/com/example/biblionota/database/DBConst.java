@@ -54,9 +54,7 @@ public class DBConst {
     public static final String AUTHOR_COLUMN_ID = "author_id";
     public static final String AUTHOR_COLUMN_NAME = "name";
 
-    //TODO: Create Table Statements
-
-
+    //Create Table Statements
     public static final String CREATE_TABLE_REVIEW =
             "CREATE TABLE " + TABLE_REVIEW + " (" +
             REVIEW_COLUMN_ID + "INT NOT NULL AUTO_INCREMENT PRIMARY KEY, " +
