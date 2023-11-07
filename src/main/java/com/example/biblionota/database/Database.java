@@ -3,16 +3,14 @@ import java.sql.*;
 
 import static com.example.biblionota.database.Const.*;
 
+/**
+ * This class is using the Singleton Design pattern. So that the entire application
+ * uses one connection to the database.
+ * We do this through the use of a private constructor
+ * The static method getInstance() will create/return the one instance of the database class
+ * Allowing the application to only ever have one instance of the Database class
+ */
 public class Database {
-    /**
-     * This class is using the Singleton Design pattern. So that the entire application
-     * uses one connection to the database.
-     * We do this through the use of a private constructor
-     * The static method getInstance() will create/return the one instance of the database class
-     * Allowing the application to only ever have one instance of the Database class
-     */
-
-
 
     private static Database instance;
    private Connection connection = null;
@@ -31,6 +29,7 @@ public class Database {
 
             //create test connection button
             //createtables() <- make tables here
+
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -60,7 +59,7 @@ public class Database {
         DatabaseMetaData metaData = connection.getMetaData();
 
         //look in database for table that matches tableName param
-        ResultSet resultSet = metaData.getTables("srileymd", null, tableName, null);
+        ResultSet resultSet = metaData.getTables("srileyjava", null, tableName, null);
         if(resultSet.next()){
             System.out.println(tableName + " table already exists");
         }else{
