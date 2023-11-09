@@ -4,54 +4,53 @@ public class DBConst {
     //Where tables are created
 
     //Book Table
-    public static final String TABLE_BOOK = "book";
-    public static final String BOOK_COLUMN_ID = "book_id";
-    public static final String BOOK_COLUMN_NAME = "book_name";
-    public static final String BOOK_COLUMN_ISBN = "book_isbn";
-    public static final String BOOK_COLUMN_PAGES = "book_pages";
-    public static final String BOOK_COLUMN_STARTED = "book_date_started";
-    public static final String BOOK_COLUMN_FINISHED = "book_date_finished";
-    public static final String BOOK_COLUMN_GENRE = "book_genre";
-    public static final String BOOK_COLUMN_FORMAT = "book_format";
-    public static final String BOOK_COLUMN_REVIEW = "book_review";
+    public static final String TABLE_BOOK = "books";
+    public static final String BOOK_COLUMN_ID = "id";
+    public static final String BOOK_COLUMN_NAME = "name";
+    public static final String BOOK_COLUMN_ISBN = "isbn";
+    public static final String BOOK_COLUMN_PAGES = "pages";
+    public static final String BOOK_COLUMN_STARTED = "date_started";
+    public static final String BOOK_COLUMN_FINISHED = "date_finished";
+    public static final String BOOK_COLUMN_GENRE = "genre";
+    public static final String BOOK_COLUMN_FORMAT = "format";
+    public static final String BOOK_COLUMN_REVIEW = "review";
 
     //Review Table
-    public static final String TABLE_REVIEW = "review";
-    public static final String REVIEW_COLUMN_ID = "review_id";
-    public static final String REVIEW_COLUMN_DESC = "review_description";
-    public static final String REVIEW_COLUMN_STARS = "review_star_rating";
+    public static final String TABLE_REVIEW = "reviews";
+    public static final String REVIEW_COLUMN_ID = "id";
+    public static final String REVIEW_COLUMN_DESC = "description";
+    public static final String REVIEW_COLUMN_STARS = "star_rating";
 
     //Tags Table
     public static final String TABLE_TAGS = "tags";
-    public static final String TAGS_COLUMN_ID = "tags_id";
+    public static final String TAGS_COLUMN_ID = "id";
     public static final String TAGS_COLUMN_NAME = "name";
 
     //Book-Tags Junction Table
-    public static final String TABLE_BOOK_TAGS = "book_tags";
-    public static final String BOOK_TAGS_COLUMN_ID = "book_tags_id";
-    public static final String BOOK_TAGS_COLUMN_BOOK = "book_tags_book";
-    public static final String BOOK_TAGS_COLUMN_TAG = "book_tags_tag";
+    public static final String TABLE_BOOK_TAGS = "books_tags";
+    public static final String BOOK_TAGS_COLUMN_ID = "id";
+    public static final String BOOK_TAGS_COLUMN_BOOK = "book_id";
+    public static final String BOOK_TAGS_COLUMN_TAG = "tag_id";
 
     //Format Table
-    public static final String TABLE_FORMAT = "format";
-    public static final String FORMAT_COLUMN_ID = "format_id";
+    public static final String TABLE_FORMAT = "formats";
+    public static final String FORMAT_COLUMN_ID = "id";
     public static final String FORMAT_COLUMN_NAME = "type";
 
     //Genre Table
-    public static final String TABLE_GENRE = "genre_type";
-    public static final String GENRE_COLUMN_ID = "genre_id";
-    public static final String GENRE_COLUMN_NAME = "genre";
+    public static final String TABLE_GENRE = "genres";
+    public static final String GENRE_COLUMN_ID = "id";
+    public static final String GENRE_COLUMN_NAME = "name";
 
     //Book-Author Junction Table
     public static final String TABLE_BOOK_AUTHOR = "books_authors";
-    public static final String BOOK_AUTHOR_COLUMN_ID = "books_authors_id";
-    public static final String BOOK_AUTHOR_COLUMN_BOOK = "books_authors_book";
-    public static final String BOOK_AUTHOR_COLUMN_AUTHOR = "books_authors_author";
-
+    public static final String BOOK_AUTHOR_COLUMN_ID = "id";
+    public static final String BOOK_AUTHOR_COLUMN_BOOK = "book_id";
+    public static final String BOOK_AUTHOR_COLUMN_AUTHOR = "author_id";
 
     //Author Table
-    public static final String TABLE_AUTHOR = "author";
-    public static final String AUTHOR_COLUMN_ID = "author_id";
+    public static final String TABLE_AUTHOR = "authors";
+    public static final String AUTHOR_COLUMN_ID = "id";
     public static final String AUTHOR_COLUMN_NAME = "name";
 
     //Create Table Statements
