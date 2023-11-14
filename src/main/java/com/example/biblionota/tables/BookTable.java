@@ -88,18 +88,27 @@ public class BookTable implements BookDAO {
 
     @Override
     public void createBook(Book book) {
-//        String query = "INSERT INTO " + DBConst.TABLE_BOOK +
-//                "(" + DBConst.BOOK_COLUMN_NAME + ", " +
-//                DBConst.ITEM_COLUMN_YEAR + ", " +
-//                DBConst.ITEM_COLUMN_CONDITION + ", " +
-//                DBConst.ITEM_COLUMN_LOCATION + ") VALUES ('" +
-//                item.getName() + "', '" +
-//                item.getYear() + "', '" +
-//                item.getCondition() + "', '" +
-//                item.getLocation() + "')";
+        String query = "INSERT INTO " + DBConst.TABLE_BOOK +
+                "(" + DBConst.BOOK_COLUMN_NAME + ", " +
+                DBConst.BOOK_COLUMN_NAME + ", " +
+                DBConst.BOOK_COLUMN_ISBN + ", " +
+                DBConst.BOOK_COLUMN_PAGES + ", " +
+                DBConst.BOOK_COLUMN_STARTED + ", " +
+                DBConst.BOOK_COLUMN_FINISHED + ", " +
+                DBConst.BOOK_COLUMN_GENRE + ", " +
+                DBConst.BOOK_COLUMN_FORMAT + ", " +
+                DBConst.BOOK_COLUMN_REVIEW + ") VALUES ('" +
+                book.getName() + "', '" +
+                book.getIsbn() + "', '" +
+                book.getPages() + "', '" +
+                book.getDate_started() + "', '" +
+                book.getDate_finished() + "', '" +
+                book.getGenre() + "', '" +
+                book.getFormat() + "', '" +
+                book.getReview() + "')";
 
         try {
-//            db.getConnection().createStatement().execute(query);
+            db.getConnection().createStatement().execute(query);
             System.out.println("Inserted Record");
         } catch (Exception e) {
             e.printStackTrace();
@@ -108,11 +117,11 @@ public class BookTable implements BookDAO {
 
     @Override
     public void updateBook(Book book) {
-//TODO
+        //TODO
     }
 
     @Override
     public void deleteBook(int id) {
-//TODO
+        //TODO
     }
 }

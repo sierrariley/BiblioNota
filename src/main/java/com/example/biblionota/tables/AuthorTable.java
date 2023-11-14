@@ -55,7 +55,16 @@ public class AuthorTable implements AuthorDAO {
 
     @Override
     public void createAuthor(Author author) {
-        //TODO
+        String query = "INSERT INTO " + DBConst.TABLE_AUTHOR +
+                "(" + DBConst.AUTHOR_COLUMN_NAME + ") VALUES ('" +
+                author.getName() + "')";
+
+        try {
+            db.getConnection().createStatement().execute(query);
+            System.out.println("Inserted Record");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

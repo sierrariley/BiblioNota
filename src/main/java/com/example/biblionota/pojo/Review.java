@@ -3,13 +3,13 @@ package com.example.biblionota.pojo;
 public class Review {
     //private variables
     private int id;
-    private String name;
+    private String description;
     private int star_rating;
 
     //constructor
-    public Review(int id, String name, int star_rating) {
+    public Review(int id, String description, int star_rating) {
         this.id = id;
-        this.name = name;
+        this.description = description;
         this.star_rating = star_rating;
     }
 
@@ -22,12 +22,12 @@ public class Review {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getDescription() {
+        return description;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDescription(String name) {
+        this.description = description;
     }
 
     public int getStar_rating() {
@@ -41,6 +41,6 @@ public class Review {
     //toString
     @Override
     public String toString() {
-        return name;
+        return description;
     }
 }

@@ -57,7 +57,18 @@ public class ReviewTable implements ReviewDAO {
 
     @Override
     public void createReview(Review review) {
-        //TODO
+        String query = "INSERT INTO " + DBConst.TABLE_REVIEW +
+                "(" + DBConst.REVIEW_COLUMN_DESC + ", " +
+                DBConst.REVIEW_COLUMN_DESC +") VALUES ('" +
+                review.getDescription() + "', '" +
+                review.getStar_rating() + "')";
+
+        try {
+            db.getConnection().createStatement().execute(query);
+            System.out.println("Inserted Record");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

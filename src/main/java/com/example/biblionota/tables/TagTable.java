@@ -53,16 +53,26 @@ public class TagTable implements TagDAO {
 
     @Override
     public void createTag(Tag tag) {
-        //TODO
+        String query = "INSERT INTO " + DBConst.TABLE_TAGS +
+                "(" + DBConst.TAGS_COLUMN_NAME + ", " +
+                DBConst.REVIEW_COLUMN_DESC +") VALUES ('" +
+                tag.getName() + "')";
+
+        try {
+            db.getConnection().createStatement().execute(query);
+            System.out.println("Inserted Record");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void updateTag(Tag tag) {
-//TODO
+        //TODO
     }
 
     @Override
     public void deleteTag(int id) {
-//TODO
+        //TODO
     }
 }

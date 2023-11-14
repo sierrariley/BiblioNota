@@ -55,7 +55,16 @@ public class GenreTable implements GenreDAO {
 
     @Override
     public void createGenre(Genre genre) {
-        //TODO
+        String query = "INSERT INTO " + DBConst.TABLE_GENRE +
+                "(" + DBConst.GENRE_COLUMN_NAME + ") VALUES ('" +
+                genre.getName() + "')";
+
+        try {
+            db.getConnection().createStatement().execute(query);
+            System.out.println("Inserted Record");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
