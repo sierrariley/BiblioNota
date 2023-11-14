@@ -67,9 +67,43 @@ public class BookTable implements BookDAO {
         return null;
     }
 
+//    @Override
+//    public void createItem(Item item) {
+//        String query = "INSERT INTO " + DBConst.TABLE_ITEM +
+//                "(" + DBConst.ITEM_COLUMN_NAME + ", " +
+//                DBConst.ITEM_COLUMN_YEAR + ", " +
+//                DBConst.ITEM_COLUMN_CONDITION + ", " +
+//                DBConst.ITEM_COLUMN_LOCATION + ") VALUES ('" +
+//                item.getName() + "', '" +
+//                item.getYear() + "', '" +
+//                item.getCondition() + "', '" +
+//                item.getLocation() + "')";
+//        try {
+//            db.getConnection().createStatement().execute(query);
+//            System.out.println("Inserted Record");
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
+
     @Override
     public void createBook(Book book) {
-        //TODO
+//        String query = "INSERT INTO " + DBConst.TABLE_BOOK +
+//                "(" + DBConst.BOOK_COLUMN_NAME + ", " +
+//                DBConst.ITEM_COLUMN_YEAR + ", " +
+//                DBConst.ITEM_COLUMN_CONDITION + ", " +
+//                DBConst.ITEM_COLUMN_LOCATION + ") VALUES ('" +
+//                item.getName() + "', '" +
+//                item.getYear() + "', '" +
+//                item.getCondition() + "', '" +
+//                item.getLocation() + "')";
+
+        try {
+//            db.getConnection().createStatement().execute(query);
+            System.out.println("Inserted Record");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
