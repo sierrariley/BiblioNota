@@ -52,4 +52,14 @@ public class AuthorTable implements AuthorDAO {
         }
         return null;
     }
+
+    @Override
+    public void createAuthor(Author author) {
+        //TODO
+    }
+
+    @Override
+    public void deleteAuthor(int id) {
+        //TODO
+    }
 }

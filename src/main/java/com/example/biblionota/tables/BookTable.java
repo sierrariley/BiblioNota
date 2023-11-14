@@ -66,4 +66,19 @@ public class BookTable implements BookDAO {
         }
         return null;
     }
+
+    @Override
+    public void createBook(Book book) {
+        //TODO
+    }
+
+    @Override
+    public void updateBook(Book book) {
+//TODO
+    }
+
+    @Override
+    public void deleteBook(int id) {
+//TODO
+    }
 }

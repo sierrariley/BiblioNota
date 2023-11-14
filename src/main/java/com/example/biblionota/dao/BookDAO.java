@@ -8,5 +8,7 @@ public interface BookDAO {
     public ArrayList<Book> getAllBooks();
     public Book getBook(int id);
 
-    //This interface may look similar to the ItemDAO from the MDTracker?
+    public void createBook(Book book);
+    public void updateBook(Book book);
+    public void deleteBook(int id);
 }

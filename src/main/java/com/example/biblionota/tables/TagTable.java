@@ -50,4 +50,19 @@ public class TagTable implements TagDAO {
         }
         return null;
     }
+
+    @Override
+    public void createTag(Tag tag) {
+        //TODO
+    }
+
+    @Override
+    public void updateTag(Tag tag) {
+//TODO
+    }
+
+    @Override
+    public void deleteTag(int id) {
+//TODO
+    }
 }

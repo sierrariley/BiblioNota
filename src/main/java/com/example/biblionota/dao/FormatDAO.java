@@ -9,4 +9,5 @@ public interface FormatDAO {
     public ArrayList<Format> getAllFormats();
 
     public Format getFormat(int id);
+
 }

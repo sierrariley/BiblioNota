@@ -9,4 +9,8 @@ public interface ReviewDAO {
     public ArrayList<Review> getAllReviews();
 
     public Review getReview(int id);
+
+    public void createReview(Review review);
+    public void updateReview(Review review);
+    public void deleteReview(int id);
 }

@@ -52,4 +52,14 @@ public class GenreTable implements GenreDAO {
         }
         return null;
     }
+
+    @Override
+    public void createGenre(Genre genre) {
+        //TODO
+    }
+
+    @Override
+    public void updateGenre(Genre genre) {
+        //TODO
+    }
 }

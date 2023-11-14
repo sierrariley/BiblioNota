@@ -9,4 +9,8 @@ public interface GenreDAO {
     public ArrayList<Genre> getAllGenres();
 
     public Genre getGenre(int id);
+
+    public void createGenre(Genre genre);
+    public void updateGenre(Genre genre);
+
 }

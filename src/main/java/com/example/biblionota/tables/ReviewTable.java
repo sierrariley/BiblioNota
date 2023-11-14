@@ -54,4 +54,19 @@ public class ReviewTable implements ReviewDAO {
         }
         return null;
     }
+
+    @Override
+    public void createReview(Review review) {
+        //TODO
+    }
+
+    @Override
+    public void updateReview(Review review) {
+        //TODO
+    }
+
+    @Override
+    public void deleteReview(int id) {
+        //TODO
+    }
 }

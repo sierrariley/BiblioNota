@@ -8,4 +8,8 @@ public interface TagDAO {
     public ArrayList<Tag> getAllTags();
 
     public Tag getTag(int id);
+
+    public void createTag(Tag tag);
+    public void updateTag(Tag tag);
+    public void deleteTag(int id);
 }
