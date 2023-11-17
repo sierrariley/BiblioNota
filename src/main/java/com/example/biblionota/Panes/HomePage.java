@@ -35,6 +35,8 @@ public class HomePage extends BorderPane {
             System.exit(0);
         });
         fileMenu.getItems().add(exit);
+        menuBar.getMenus().addAll(fileMenu, credits);
+
 
         TabPane tabPane = new TabPane();
         MyBooksTab myBooksTab = MyBooksTab.getInstance();
