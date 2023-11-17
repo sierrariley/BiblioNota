@@ -9,10 +9,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 
-public class HomePage extends GridPane {
+public class HomePage extends BorderPane {
     public HomePage() {
 
-        this.setPrefWidth(1000);
+        BorderPane root = new BorderPane();
 
 
         ImageView logo = new ImageView(new Image("images/logo.png"));
@@ -23,7 +23,7 @@ public class HomePage extends GridPane {
         ImageView imageView = new ImageView(background2);
         imageView.setPreserveRatio(true);
         BackgroundSize size = new BackgroundSize(1200,800,true,true,true, false);
-        this.setBackground(new Background(new BackgroundImage(background2, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, size)));
+//        this.setBackground(new Background(new BackgroundImage(background2, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, size)));
 
 
 
@@ -43,8 +43,14 @@ public class HomePage extends GridPane {
         tabPane.getTabs().addAll(myBooksTab, addBookTab);
         tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 
-        this.add(logo, 1000,0);
-        this.add(tabPane, 0, 1);
+//        root.setTop(menuBar);
+//        root.setCenter(tabPane);
+
+        this.setCenter(tabPane);
+        this.setTop(menuBar);
+
+//        this.add(logo, 1000,0);
+//        this.add(tabPane, 0, 1);
 
 
 

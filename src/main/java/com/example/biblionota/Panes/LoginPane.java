@@ -12,7 +12,7 @@ import javafx.scene.text.Text;
 
 public class LoginPane extends GridPane {
     public LoginPane(){
-        BorderPane root = new BorderPane();
+//        BorderPane root = new BorderPane();
         GridPane grid = new GridPane();
 
         //Create background Image
