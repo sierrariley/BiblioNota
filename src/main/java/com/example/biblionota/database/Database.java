@@ -13,7 +13,7 @@ import static com.example.biblionota.database.Const.*;
 public class Database {
 
     private static Database instance;
-   private Connection connection = null;
+    private Connection connection = null;
 
 
     /**
@@ -27,6 +27,14 @@ public class Database {
         connection = DriverManager.getConnection("jdbc:mysql://localhost/" + DB_NAME + "?serverTimezone=UTC", DB_USER, DB_PASS);
             System.out.println("Created Connection");
 
+            createTable(DBConst.TABLE_AUTHOR, DBConst.CREATE_TABLE_AUTHOR, connection);
+            createTable(DBConst.TABLE_FORMAT, DBConst.CREATE_TABLE_FORMAT, connection);
+            createTable(DBConst.TABLE_GENRE, DBConst.CREATE_TABLE_GENRE, connection);
+            createTable(DBConst.TABLE_TAGS, DBConst.CREATE_TABLE_TAGS, connection);
+            createTable(DBConst.TABLE_REVIEW, DBConst.CREATE_TABLE_REVIEW, connection);
+            createTable(DBConst.TABLE_BOOK, DBConst.CREATE_TABLE_BOOK, connection);
+            createTable(DBConst.TABLE_BOOK_AUTHOR, DBConst.CREATE_TABLE_BOOK_AUTHOR, connection);
+            createTable(DBConst.TABLE_BOOK_TAGS, DBConst.CREATE_TABLE_BOOK_TAGS, connection);
             //create test connection button
             //createtables() <- make tables here
 
@@ -59,7 +67,7 @@ public class Database {
         DatabaseMetaData metaData = connection.getMetaData();
 
         //look in database for table that matches tableName param
-        ResultSet resultSet = metaData.getTables("srileyjava", null, tableName, null);
+        ResultSet resultSet = metaData.getTables("slawrencejava", null, tableName, null);
         if(resultSet.next()){
             System.out.println(tableName + " table already exists");
         }else{

@@ -56,8 +56,8 @@ public class DBConst {
     //Create Table Statements
     public static final String CREATE_TABLE_REVIEW =
             "CREATE TABLE " + TABLE_REVIEW + " (" +
-            REVIEW_COLUMN_ID + "INT NOT NULL AUTO_INCREMENT PRIMARY KEY, " +
-            REVIEW_COLUMN_DESC + "VARCHAR(1000), " +
+            REVIEW_COLUMN_ID + " INT NOT NULL AUTO_INCREMENT PRIMARY KEY, " +
+            REVIEW_COLUMN_DESC + " VARCHAR(1000), " +
             REVIEW_COLUMN_STARS + " INT(5));";
 
     public static final String CREATE_TABLE_TAGS =
