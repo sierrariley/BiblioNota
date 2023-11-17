@@ -14,7 +14,7 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
         mainStage = stage;
         mainStage.setTitle("BiblioNota");
-        mainStage.setScene(new HomeScene());
+        mainStage.setScene(new LoginScene());
         mainStage.show();
     }
 
