@@ -1,8 +1,8 @@
 package com.example.biblionota.database;
 
 public class Const {
-    //TODO: Alter these values to proper ones
-    public static final String DB_NAME = "usernamemd";
-    public static final String DB_USER = "username";
-    public static final String DB_PASS = "longpassword";
+    public static final String DB_NAME = "slawrencejava";
+    public static final String DB_USER = "slawrence";
+    public static final String DB_PASS = "csdjgcsdjgcp3pscp3ps";
 }
+
