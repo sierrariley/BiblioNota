@@ -11,7 +11,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class BookTable implements BookDAO {
-    Database db = Database.getInstance();
+    private static BookTable instance;
+    Database db;
+    private BookTable() { db = Database.getInstance(); }
     ArrayList<Book> books;
     @Override
     public ArrayList<Book> getAllBooks() {
@@ -67,25 +69,6 @@ public class BookTable implements BookDAO {
         return null;
     }
 
-//    @Override
-//    public void createItem(Item item) {
-//        String query = "INSERT INTO " + DBConst.TABLE_ITEM +
-//                "(" + DBConst.ITEM_COLUMN_NAME + ", " +
-//                DBConst.ITEM_COLUMN_YEAR + ", " +
-//                DBConst.ITEM_COLUMN_CONDITION + ", " +
-//                DBConst.ITEM_COLUMN_LOCATION + ") VALUES ('" +
-//                item.getName() + "', '" +
-//                item.getYear() + "', '" +
-//                item.getCondition() + "', '" +
-//                item.getLocation() + "')";
-//        try {
-//            db.getConnection().createStatement().execute(query);
-//            System.out.println("Inserted Record");
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
-
     @Override
     public void createBook(Book book) {
         String query = "INSERT INTO " + DBConst.TABLE_BOOK +
@@ -123,5 +106,12 @@ public class BookTable implements BookDAO {
     @Override
     public void deleteBook(int id) {
         //TODO
+    }
+
+    public static BookTable getInstance() {
+        if(instance == null){
+            instance = new BookTable();
+        }
+        return instance;
     }
 }

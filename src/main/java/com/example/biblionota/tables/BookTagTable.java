@@ -11,7 +11,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class BookTagTable implements BookTagDAO {
-    Database db = Database.getInstance();
+    private static BookTagTable instance;
+    Database db;
+    private BookTagTable() { db = Database.getInstance(); }
     ArrayList<BookTag> booksTags;
     @Override
     public ArrayList<BookTag> getAllBookTag() {
@@ -53,5 +55,12 @@ public class BookTagTable implements BookTagDAO {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static BookTagTable getInstance() {
+        if(instance == null){
+            instance = new BookTagTable();
+        }
+        return instance;
     }
 }

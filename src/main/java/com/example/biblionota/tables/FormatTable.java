@@ -11,7 +11,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class FormatTable implements FormatDAO {
-    Database db = Database.getInstance();
+    private static FormatTable instance;
+    Database db;
+    private FormatTable() { db = Database.getInstance(); }
     ArrayList<Format> formats;
     @Override
     public ArrayList<Format> getAllFormats() {
@@ -51,5 +53,12 @@ public class FormatTable implements FormatDAO {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static FormatTable getInstance() {
+        if(instance == null){
+            instance = new FormatTable();
+        }
+        return instance;
     }
 }
