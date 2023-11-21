@@ -11,7 +11,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class AuthorTable implements AuthorDAO {
-    Database db = Database.getInstance();
+
+    private static AuthorTable instance;
+    Database db;
+    private AuthorTable() { db = Database.getInstance(); }
+
     ArrayList<Author> authors;
     @Override
     public ArrayList<Author> getAllAuthors() {
@@ -65,6 +69,13 @@ public class AuthorTable implements AuthorDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static AuthorTable getInstance() {
+        if(instance == null){
+            instance = new AuthorTable();
+        }
+        return instance;
     }
 
     @Override
