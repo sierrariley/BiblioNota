@@ -58,6 +58,9 @@ public class LoginPane extends BorderPane {
 //        fade.setToValue(0.1);
 //        fade.setAutoReverse(true);
 
+        loginButton.setOnMouseClicked(e->{
+            HelloApplication.mainStage.setScene(new HomeScene());
+        });
 
 
 
