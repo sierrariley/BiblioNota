@@ -1,5 +1,6 @@
 package com.example.biblionota.Tabs;
 
+import com.example.biblionota.tables.BookTable;
 import javafx.scene.control.Tab;
 
 public class MyBooksTab extends Tab {
@@ -7,6 +8,7 @@ public class MyBooksTab extends Tab {
 
     private MyBooksTab(){
         this.setText("My Books");
+
 
 
 
