@@ -11,7 +11,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class ReviewTable implements ReviewDAO {
-    Database db = Database.getInstance();
+    private static ReviewTable instance;
+    Database db;
+    private ReviewTable() { db = Database.getInstance(); }
     ArrayList<Review> reviews;
     @Override
     public ArrayList<Review> getAllReviews() {
@@ -79,5 +81,12 @@ public class ReviewTable implements ReviewDAO {
     @Override
     public void deleteReview(int id) {
         //TODO
+    }
+
+    public static ReviewTable getInstance() {
+        if(instance == null){
+            instance = new ReviewTable();
+        }
+        return instance;
     }
 }

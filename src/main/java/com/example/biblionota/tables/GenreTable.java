@@ -11,7 +11,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class GenreTable implements GenreDAO {
-    Database db = Database.getInstance();
+    private static GenreTable instance;
+    Database db;
+    private GenreTable() { db = Database.getInstance(); }
     ArrayList<Genre> genres;
     @Override
     public ArrayList<Genre> getAllGenres() {
@@ -70,5 +72,12 @@ public class GenreTable implements GenreDAO {
     @Override
     public void updateGenre(Genre genre) {
         //TODO
+    }
+
+    public static GenreTable getInstance() {
+        if(instance == null){
+            instance = new GenreTable();
+        }
+        return instance;
     }
 }

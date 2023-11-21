@@ -9,7 +9,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class TagTable implements TagDAO {
-    Database db = Database.getInstance();
+    private static TagTable instance;
+    Database db;
+    private TagTable() { db = Database.getInstance(); }
     ArrayList<Tag> tags;
     @Override
     public ArrayList<Tag> getAllTags() {
@@ -74,5 +76,12 @@ public class TagTable implements TagDAO {
     @Override
     public void deleteTag(int id) {
         //TODO
+    }
+
+    public static TagTable getInstance() {
+        if(instance == null){
+            instance = new TagTable();
+        }
+        return instance;
     }
 }
