@@ -7,6 +7,7 @@ import com.example.biblionota.pojo.Author;
 import com.example.biblionota.pojo.Tag;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
@@ -80,6 +81,13 @@ public class AuthorTable implements AuthorDAO {
 
     @Override
     public void deleteAuthor(int id) {
-        //TODO
+        String query = "DELETE FROM " + DBConst.TABLE_AUTHOR + " WHERE " +
+                DBConst.AUTHOR_COLUMN_ID + " = " + id;
+        try {
+            db.getConnection().createStatement().execute(query);
+            System.out.println("Deleted Record.");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

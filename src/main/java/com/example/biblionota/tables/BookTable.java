@@ -7,6 +7,7 @@ import com.example.biblionota.pojo.Book;
 import com.example.biblionota.pojo.BookAuthor;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
@@ -100,12 +101,46 @@ public class BookTable implements BookDAO {
 
     @Override
     public void updateBook(Book book) {
-        //TODO
+        /**
+         *     private int isbn;
+         *     private int pages;
+         *     private String date_started;
+         *     private String date_finished;
+         *     private int genre;
+         *     private int format;
+         *     private int review;
+         */
+        String query = "UPDATE " + DBConst.TABLE_BOOK + " SET " +
+                DBConst.BOOK_COLUMN_NAME + "= " + book.getName() + ", " +
+                DBConst.BOOK_COLUMN_ISBN + "= " + book.getIsbn() + ", " +
+                DBConst.BOOK_COLUMN_PAGES + "= " + book.getPages() + ", " +
+                DBConst.BOOK_COLUMN_STARTED + "= " + book.getDate_started() + ", " +
+                DBConst.BOOK_COLUMN_FINISHED + "= " + book.getDate_finished() + ", " +
+                DBConst.BOOK_COLUMN_GENRE + "= " + book.getGenre() + ", " +
+                DBConst.BOOK_COLUMN_FORMAT + "= " + book.getFormat() + ", " +
+                DBConst.BOOK_COLUMN_REVIEW + "= " + book.getReview() +
+                " WHERE " + DBConst.BOOK_COLUMN_ID + " = " + book.getId();
+
+        try {
+            Statement updateItem = db.getConnection().createStatement();
+            updateItem.executeUpdate(query);
+            System.out.println("Record Updated");
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void deleteBook(int id) {
-        //TODO
+        String query = "DELETE FROM " + DBConst.TABLE_BOOK + " WHERE " +
+                DBConst.BOOK_COLUMN_ID + " = " + id;
+        try {
+            db.getConnection().createStatement().execute(query);
+            System.out.println("Deleted Record");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static BookTable getInstance() {
@@ -114,4 +149,7 @@ public class BookTable implements BookDAO {
         }
         return instance;
     }
+
+    //TODO: Create getDisplayItems
+    //TODO: Create getItemCount
 }
