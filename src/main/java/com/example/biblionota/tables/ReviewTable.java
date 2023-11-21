@@ -7,6 +7,7 @@ import com.example.biblionota.pojo.Genre;
 import com.example.biblionota.pojo.Review;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
@@ -75,12 +76,29 @@ public class ReviewTable implements ReviewDAO {
 
     @Override
     public void updateReview(Review review) {
-        //TODO
+        String query = "UPDATE " + DBConst.TABLE_REVIEW + " SET " +
+                DBConst.REVIEW_COLUMN_DESC + "= " + review.getDescription() + ", " +
+                DBConst.REVIEW_COLUMN_STARS + "= " + review.getStar_rating() +
+                " WHERE " + DBConst.REVIEW_COLUMN_ID + " = " + review.getId();
+        try {
+            Statement updateReview = db.getConnection().createStatement();
+            updateReview.executeUpdate(query);
+            System.out.println("Record Updated");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void deleteReview(int id) {
-        //TODO
+        String query = "DELETE FROM " + DBConst.TABLE_REVIEW + " WHERE " +
+                DBConst.REVIEW_COLUMN_ID + " = " + id;
+        try {
+            db.getConnection().createStatement().execute(query);
+            System.out.println("Deleted Record");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static ReviewTable getInstance() {
