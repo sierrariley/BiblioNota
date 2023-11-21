@@ -110,7 +110,7 @@ public class DBConst {
                     BOOK_COLUMN_FINISHED + " DATE, " +
                     BOOK_COLUMN_GENRE + " INT NOT NULL, " +
                     BOOK_COLUMN_FORMAT + " INT NOT NULL, " +
-                    BOOK_COLUMN_REVIEW + " INT NOT NULL, " +
+                    BOOK_COLUMN_REVIEW + " INT, " +
                     " FOREIGN KEY (" + BOOK_COLUMN_GENRE + ")" +
                     " REFERENCES " + TABLE_GENRE + "(" + GENRE_COLUMN_ID +")," +
                     " FOREIGN KEY (" + BOOK_COLUMN_REVIEW + ")" +
