@@ -5,7 +5,10 @@ import com.example.biblionota.database.DBConst;
 import com.example.biblionota.database.Database;
 import com.example.biblionota.pojo.Book;
 import com.example.biblionota.pojo.BookAuthor;
+import com.example.biblionota.pojo.DisplayBook;
 
+import javax.xml.transform.Result;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -101,15 +104,6 @@ public class BookTable implements BookDAO {
 
     @Override
     public void updateBook(Book book) {
-        /**
-         *     private int isbn;
-         *     private int pages;
-         *     private String date_started;
-         *     private String date_finished;
-         *     private int genre;
-         *     private int format;
-         *     private int review;
-         */
         String query = "UPDATE " + DBConst.TABLE_BOOK + " SET " +
                 DBConst.BOOK_COLUMN_NAME + "= " + book.getName() + ", " +
                 DBConst.BOOK_COLUMN_ISBN + "= " + book.getIsbn() + ", " +
@@ -126,7 +120,6 @@ public class BookTable implements BookDAO {
             updateItem.executeUpdate(query);
             System.out.println("Record Updated");
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -150,6 +143,61 @@ public class BookTable implements BookDAO {
         return instance;
     }
 
-    //TODO: Create getDisplayItems
-    //TODO: Create getItemCount
+    public ArrayList<DisplayBook> getDisplayBooks() {
+        ArrayList<DisplayBook> books = new ArrayList<>();
+        String query = """
+                SELECT
+                 book.id,
+                 book.name,
+                 book.isbn,
+                 book.pages,
+                 book.date_started,
+                 book.date_finished,
+                 genre.name AS genre_name,
+                 format.name AS format_name,
+                 review.name AS review_name
+                FROM book
+                JOIN genre on item.genre = genre.id
+                JOIN format on item.format = format.id
+                JOIN review on item.review = review.id
+                ORDER BY book.id ASC
+                """;
+        try {
+            Statement getDisplayItems = db.getConnection().createStatement();
+            ResultSet data = getDisplayItems.executeQuery(query);
+            while(data.next()) {
+                books.add(new DisplayBook(
+                        data.getInt("id"),
+                        data.getString("name"),
+                        data.getInt("isbn"),
+                        data.getInt("pages"),
+                        data.getString("date_started"),
+                        data.getString("date_finished"),
+                        data.getInt("genre"),
+                        data.getInt("format"),
+                        data.getInt("review")
+                ));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return books;
+    }
+
+    public int getItemCount(int book) {
+        int count = -1;
+        try {
+            PreparedStatement getCount = db.getConnection()
+                    .prepareStatement("SELECT * FROM " + DBConst.TABLE_BOOK +
+                            " WHERE " + DBConst.BOOK_COLUMN_NAME +
+                            " = '" + book + "'", ResultSet.TYPE_SCROLL_SENSITIVE,
+                            ResultSet.CONCUR_UPDATABLE);
+            ResultSet data = getCount.executeQuery();
+            data.last();
+            count = data.getRow();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
 }
