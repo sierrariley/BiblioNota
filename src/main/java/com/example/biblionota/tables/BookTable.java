@@ -156,11 +156,18 @@ public class BookTable implements BookDAO {
                  genres.name AS genre_name,
                  formats.type AS format_name,
                  reviews.description AS review_description,
-                 reviews.star_rating AS review_star_rating
+                 reviews.star_rating AS review_star_rating,
+                 GROUP_CONCAT(authors.author_name) AS author_names,
+                 GROUP_CONCAT(tags.tag_name) AS tag_names
                 FROM books
                 JOIN genres ON books.genre = genres.id
                 JOIN formats ON books.format = formats.id
                 LEFT JOIN reviews ON books.review = reviews.id
+                LEFT JOIN books_authors ON books.id = books_authors.book_id
+                LEFT JOIN authors ON books_authors.author_id = authors.id
+                LEFT JOIN books_tags ON books.id = books_tags.book_id
+                LEFT JOIN tags ON books_tags.tag_id = tags.id
+                GROUP BY books.id, books.name, books.isbn, books.pages, books.date_started, books.date_finished, genres.name, formats.type, reviews.description, reviews.star_rating
                 ORDER BY books.id ASC
                 """;
         try {
@@ -177,7 +184,9 @@ public class BookTable implements BookDAO {
                         data.getString("genre_name"),
                         data.getString("format_name"),
                         data.getString("review_description"),
-                        data.getInt("review_star_rating")
+                        data.getInt("review_star_rating"),
+                        data.getString("author_names"),
+                        data.getString("tag_names")
                 ));
             }
         } catch (Exception e) {
