@@ -10,8 +10,9 @@ public class DisplayBook {
     private String genre_name;
     private String format_name;
     private String review_description;
+    private int review_star_rating;
 
-    public DisplayBook(int id, String name, int isbn, int pages, String date_started, String date_finished, String genre_name, String format_name, String review_description) {
+    public DisplayBook(int id, String name, int isbn, int pages, String date_started, String date_finished, String genre_name, String format_name, String review_description, int review_star_rating) {
         this.id = id;
         this.name = name;
         this.isbn = isbn;
@@ -21,6 +22,7 @@ public class DisplayBook {
         this.genre_name = genre_name;
         this.format_name = format_name;
         this.review_description = review_description;
+        this.review_star_rating = review_star_rating;
     }
 
     public int getId() {
@@ -93,5 +95,13 @@ public class DisplayBook {
 
     public void setReview_description(String review_description) {
         this.review_description = review_description;
+    }
+
+    public int getReview_star_rating() {
+        return review_star_rating;
+    }
+
+    public void setReview_star_rating(int review_star_rating) {
+        this.review_star_rating = review_star_rating;
     }
 }
