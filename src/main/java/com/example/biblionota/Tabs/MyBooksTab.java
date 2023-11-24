@@ -22,6 +22,11 @@ public class MyBooksTab extends Tab {
         AuthorTable author = AuthorTable.getInstance();
         GenreTable genre = GenreTable.getInstance();
 
+        /**
+         * Creates a table to hold the books
+         * TableView()
+         * TableColumn<>
+         */
         tableview = new TableView();
         TableColumn<DisplayBook, String> column1 = new TableColumn<>("Book Name");
         column1.setCellValueFactory(e-> new SimpleStringProperty(e.getValue().getName()));
