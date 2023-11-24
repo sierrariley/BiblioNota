@@ -147,20 +147,20 @@ public class BookTable implements BookDAO {
         ArrayList<DisplayBook> books = new ArrayList<>();
         String query = """
                 SELECT
-                 book.id,
-                 book.name,
-                 book.isbn,
-                 book.pages,
-                 book.date_started,
-                 book.date_finished,
-                 genre.name AS genre_name,
-                 format.name AS format_name,
-                 review.name AS review_name
-                FROM book
-                JOIN genre on item.genre = genre.id
-                JOIN format on item.format = format.id
-                JOIN review on item.review = review.id
-                ORDER BY book.id ASC
+                 books.id,
+                 books.name,
+                 books.isbn,
+                 books.pages,
+                 books.date_started,
+                 books.date_finished,
+                 genres.name AS genre_name,
+                 formats.type AS format_name,
+                 reviews.description AS review_description,
+                FROM books
+                JOIN genres on books.genre = genres.id
+                JOIN formats on books.format = formats.id
+                JOIN reviews on books.review = reviews.id
+                ORDER BY books.id ASC
                 """;
         try {
             Statement getDisplayItems = db.getConnection().createStatement();
