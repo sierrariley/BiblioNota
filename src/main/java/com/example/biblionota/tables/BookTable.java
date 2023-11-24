@@ -155,11 +155,11 @@ public class BookTable implements BookDAO {
                  books.date_finished,
                  genres.name AS genre_name,
                  formats.type AS format_name,
-                 reviews.description AS review_description
+                 CONCAT_WS(' - ', reviews.description, reviews.star_rating) AS review_description
                 FROM books
                 JOIN genres ON books.genre = genres.id
                 JOIN formats ON books.format = formats.id
-                JOIN reviews ON books.review = reviews.id
+                LEFT JOIN reviews ON books.review = reviews.id
                 ORDER BY books.id ASC
                 """;
         try {
