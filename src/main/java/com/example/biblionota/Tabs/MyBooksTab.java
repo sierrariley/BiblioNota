@@ -6,10 +6,10 @@ import com.example.biblionota.tables.BookTable;
 import com.example.biblionota.tables.GenreTable;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.text.Text;
+import javafx.util.Callback;
 
 public class MyBooksTab extends Tab {
     private static MyBooksTab instance;
@@ -51,13 +51,22 @@ public class MyBooksTab extends Tab {
 
         //review
         TableColumn<DisplayBook, String> column8 = new TableColumn<>("Review");
+        column8.setCellFactory(table ->{
+            TableCell<DisplayBook, String> cell = new TableCell<>();
+            Text review = new Text();
+            cell.setGraphic(review);
+            review.setWrappingWidth(200);
+            review.textProperty().bind(cell.itemProperty());
+            return cell;
+        });
         column8.setCellValueFactory(e-> new SimpleStringProperty(e.getValue().getReview_description()));
+
 
         //star rating
         TableColumn<DisplayBook, String> column9 = new TableColumn<>("Star Rating (1-5)");
-        column9.setCellValueFactory(e-> new SimpleStringProperty(e.getValue().getReview_description()));
+        column9.setCellValueFactory(e-> new SimpleStringProperty(String.valueOf(e.getValue().getReview_star_rating())));
 
-        tableview.getColumns().addAll(column1, column2, column3, column4, column5, column6, column7, column8);
+        tableview.getColumns().addAll(column1, column2, column3, column4, column5, column6, column7, column8, column9);
         tableview.getItems().addAll(book.getDisplayBooks());
         root.setCenter(tableview);
 
