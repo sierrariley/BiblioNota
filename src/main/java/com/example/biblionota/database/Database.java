@@ -67,7 +67,7 @@ public class Database {
         DatabaseMetaData metaData = connection.getMetaData();
 
         //look in database for table that matches tableName param
-        ResultSet resultSet = metaData.getTables("slawrencejava", null, tableName, null);
+        ResultSet resultSet = metaData.getTables("srileyjava", null, tableName, null);
         if(resultSet.next()){
             System.out.println(tableName + " table already exists");
         }else{
