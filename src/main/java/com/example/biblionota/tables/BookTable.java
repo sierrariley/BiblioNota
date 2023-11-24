@@ -155,7 +155,8 @@ public class BookTable implements BookDAO {
                  books.date_finished,
                  genres.name AS genre_name,
                  formats.type AS format_name,
-                 CONCAT_WS(' - ', reviews.description, reviews.star_rating) AS review_description
+                 reviews.description AS review_description,
+                 reviews.star_rating AS review_star_rating
                 FROM books
                 JOIN genres ON books.genre = genres.id
                 JOIN formats ON books.format = formats.id
@@ -175,7 +176,8 @@ public class BookTable implements BookDAO {
                         data.getString("date_finished"),
                         data.getString("genre_name"),
                         data.getString("format_name"),
-                        data.getString("review_description")
+                        data.getString("review_description"),
+                        data.getInt("review_star_rating")
                 ));
             }
         } catch (Exception e) {
