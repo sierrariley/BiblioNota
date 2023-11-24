@@ -154,8 +154,8 @@ public class BookTable implements BookDAO {
                  books.date_started,
                  books.date_finished,
                  genres.name AS genre_name,
-                 formats.name AS format_name,
-                 reviews.name AS review_name
+                 formats.type AS format_name,
+                 reviews.description AS review_description,
                 FROM books
                 JOIN genres on books.genre = genres.id
                 JOIN formats on books.format = formats.id
