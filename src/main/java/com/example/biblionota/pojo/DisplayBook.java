@@ -7,20 +7,20 @@ public class DisplayBook {
     private int pages;
     private String date_started;
     private String date_finished;
-    private int genre;
-    private int format;
-    private int review;
+    private String genre_name;
+    private String format_name;
+    private String review_description;
 
-    public DisplayBook(int id, String name, int isbn, int pages, String date_started, String date_finished, int genre, int format, int review) {
+    public DisplayBook(int id, String name, int isbn, int pages, String date_started, String date_finished, String genre_name, String format_name, String review_description) {
         this.id = id;
         this.name = name;
         this.isbn = isbn;
         this.pages = pages;
         this.date_started = date_started;
         this.date_finished = date_finished;
-        this.genre = genre;
-        this.format = format;
-        this.review = review;
+        this.genre_name = genre_name;
+        this.format_name = format_name;
+        this.review_description = review_description;
     }
 
     public int getId() {
@@ -71,27 +71,27 @@ public class DisplayBook {
         this.date_finished = date_finished;
     }
 
-    public int getGenre() {
-        return genre;
+    public String getGenre_name() {
+        return genre_name;
     }
 
-    public void setGenre(int genre) {
-        this.genre = genre;
+    public void setGenre_name(String genre_name) {
+        this.genre_name = genre_name;
     }
 
-    public int getFormat() {
-        return format;
+    public String getFormat_name() {
+        return format_name;
     }
 
-    public void setFormat(int format) {
-        this.format = format;
+    public void setFormat_name(String format_name) {
+        this.format_name = format_name;
     }
 
-    public int getReview() {
-        return review;
+    public String getReview_description() {
+        return review_description;
     }
 
-    public void setReview(int review) {
-        this.review = review;
+    public void setReview_description(String review_description) {
+        this.review_description = review_description;
     }
 }
