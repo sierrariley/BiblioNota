@@ -43,19 +43,21 @@ public class MyBooksTab extends Tab {
 
         //genre
         TableColumn<DisplayBook, String> column6 = new TableColumn<>("Genre");
-        column6.setCellValueFactory(e-> new SimpleStringProperty(String.valueOf(e.getValue().getGenre())));
+        column6.setCellValueFactory(e-> new SimpleStringProperty(e.getValue().getGenre_name()));
 
         //format
         TableColumn<DisplayBook, String> column7 = new TableColumn<>("Format");
-        column7.setCellValueFactory(e-> new SimpleStringProperty(String.valueOf(e.getValue().getFormat())));
+        column7.setCellValueFactory(e-> new SimpleStringProperty(e.getValue().getFormat_name()));
 
         //review
         TableColumn<DisplayBook, String> column8 = new TableColumn<>("Review");
-        column8.setCellValueFactory(e-> new SimpleStringProperty(String.valueOf(e.getValue().getReview())));
+        column8.setCellValueFactory(e-> new SimpleStringProperty(e.getValue().getReview_description()));
 
         tableview.getColumns().addAll(column1, column2, column3, column4, column5, column6, column7, column8);
         tableview.getItems().addAll(book.getDisplayBooks());
         root.setCenter(tableview);
+
+        this.setContent(root);
 
 
 
