@@ -16,6 +16,11 @@ public class AddBookTab extends Tab {
         GridPane root = new GridPane();
         ObservableList<Integer> rating = FXCollections.observableArrayList(1, 2, 3, 4, 5);
 
+        BookTable bookTable = BookTable.getInstance();
+        AuthorTable authorTable = AuthorTable.getInstance();
+
+
+
         Text bookName = new Text("Book Title: ");
         TextField addBookName = new TextField();
         root.add(bookName, 0, 0);
