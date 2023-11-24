@@ -155,11 +155,11 @@ public class BookTable implements BookDAO {
                  books.date_finished,
                  genres.name AS genre_name,
                  formats.type AS format_name,
-                 reviews.description AS review_description,
+                 reviews.description AS review_description
                 FROM books
-                JOIN genres on books.genre = genres.id
-                JOIN formats on books.format = formats.id
-                JOIN reviews on books.review = reviews.id
+                JOIN genres ON books.genre = genres.id
+                JOIN formats ON books.format = formats.id
+                JOIN reviews ON books.review = reviews.id
                 ORDER BY books.id ASC
                 """;
         try {
@@ -173,9 +173,9 @@ public class BookTable implements BookDAO {
                         data.getInt("pages"),
                         data.getString("date_started"),
                         data.getString("date_finished"),
-                        data.getInt("genre"),
-                        data.getInt("format"),
-                        data.getInt("review")
+                        data.getString("genre_name"),
+                        data.getString("format_name"),
+                        data.getString("review_description")
                 ));
             }
         } catch (Exception e) {
