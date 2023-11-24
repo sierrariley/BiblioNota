@@ -102,6 +102,7 @@ public class DisplayBook {
     }
 
     public int getReview_star_rating() {
+        // TODO: U+2605
         return review_star_rating;
     }
 
@@ -118,7 +119,11 @@ public class DisplayBook {
     }
 
     public String getTag_names() {
-        return tag_names;
+        if(tag_names == null){
+            return "";
+        }else {
+            return tag_names;
+        }
     }
 
     public void setTag_names(String tag_names) {
