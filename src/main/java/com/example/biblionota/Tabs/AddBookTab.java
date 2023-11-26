@@ -1,11 +1,17 @@
 package com.example.biblionota.Tabs;
 
+
+import com.example.biblionota.pojo.Tag;
+import com.example.biblionota.tables.TagTable;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
+
+
 
 public class AddBookTab extends Tab {
 
@@ -16,8 +22,8 @@ public class AddBookTab extends Tab {
         GridPane root = new GridPane();
         ObservableList<Integer> rating = FXCollections.observableArrayList(1, 2, 3, 4, 5);
 
-        BookTable bookTable = BookTable.getInstance();
-        AuthorTable authorTable = AuthorTable.getInstance();
+        TagTable tagTable = TagTable.getInstance();
+
 
 
 
@@ -54,9 +60,12 @@ public class AddBookTab extends Tab {
         root.add(bookRating, 1, 5);
 
         Label tag = new Label("Tag: ");
-        TextField addTag = new TextField();
+        ComboBox<Tag> tagName = new ComboBox<>();
+
+        tagName.setItems(FXCollections.observableArrayList(tagTable.getAllTags()));
+//        TextField addTag = new TextField();
         root.add(tag, 0, 6);
-        root.add(addTag, 1, 6);
+        root.add(tagName, 1, 6);
 
         Label startDate = new Label("Date Started: ");
         DatePicker dateStarted = new DatePicker();
