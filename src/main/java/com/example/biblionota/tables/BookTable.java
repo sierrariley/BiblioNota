@@ -157,8 +157,8 @@ public class BookTable implements BookDAO {
                  formats.type AS format_name,
                  reviews.description AS review_description,
                  reviews.star_rating AS review_star_rating,
-                 GROUP_CONCAT(authors.author_name) AS author_names,
-                 GROUP_CONCAT(tags.tag_name) AS tag_names
+                 GROUP_CONCAT(DISTINCT authors.name) AS author_names,
+                 GROUP_CONCAT(DISTINCT tags.name) AS tag_names
                 FROM books
                 JOIN genres ON books.genre = genres.id
                 JOIN formats ON books.format = formats.id
