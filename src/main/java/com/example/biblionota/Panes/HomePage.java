@@ -2,12 +2,11 @@ package com.example.biblionota.Panes;
 
 import com.example.biblionota.Tabs.AddBookTab;
 import com.example.biblionota.Tabs.MyBooksTab;
-import javafx.geometry.Pos;
+import com.example.biblionota.Tabs.RemoveBookTab;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.text.Text;
 
 public class HomePage extends BorderPane {
     public HomePage() {
@@ -41,8 +40,9 @@ public class HomePage extends BorderPane {
         TabPane tabPane = new TabPane();
         MyBooksTab myBooksTab = MyBooksTab.getInstance();
         AddBookTab addBookTab = AddBookTab.getInstance();
+        RemoveBookTab removeBookTab = RemoveBookTab.getInstance();
 
-        tabPane.getTabs().addAll(myBooksTab, addBookTab);
+        tabPane.getTabs().addAll(myBooksTab, addBookTab, removeBookTab);
         tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 
 //        root.setTop(menuBar);
