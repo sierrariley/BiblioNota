@@ -1,19 +1,15 @@
 package com.example.biblionota.Tabs;
 
 
-import com.example.biblionota.pojo.Book;
 import com.example.biblionota.pojo.Tag;
 import com.example.biblionota.tables.BookTable;
 import com.example.biblionota.tables.TagTable;
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
-
 
 
 public class AddBookTab extends Tab {
@@ -83,13 +79,40 @@ public class AddBookTab extends Tab {
         root.add(addAuthor, 1, 9);
 
 
-        //TODO:
+        /**
+         * Using Listview that holds all the created tags to populate an empty listview that will add the tags to the new book
+         * Created a transfer and remove tag button to toggle between the two views
+         */
         Label tag = new Label("Tag: ");
-        ListView<Tag> tagName = new ListView<>(FXCollections.observableArrayList(tagTable.getAllTags()));
-        TextField addTag = new TextField();
+        final ListView<Tag> tagName = new ListView<>(FXCollections.observableArrayList(tagTable.getAllTags()));
+        final ListView<Tag> addTag = new ListView<>();
+        tagName.prefWidth(100);
         root.add(tag, 0, 10);
         root.add(addTag, 1,10);
         pane.setRight(tagName);
+
+        Button transfer = new Button("<");
+        transfer.setOnAction(e ->{
+            ObservableList<Tag> selectedTag = tagName.getSelectionModel().getSelectedItems();
+            if(!selectedTag.isEmpty()){
+                addTag.getItems().addAll(selectedTag);
+                tagName.getItems().removeAll(selectedTag);
+            }
+
+        });
+        Button returnTag = new Button(">");
+        returnTag.setOnAction(e ->{
+            ObservableList<Tag> selectedTag = addTag.getSelectionModel().getSelectedItems();
+           if(!selectedTag.isEmpty()){
+               tagName.getItems().addAll(selectedTag);
+               addTag.getItems().removeAll(selectedTag);
+           }
+
+        });
+
+
+        root.add(returnTag, 20, 10);
+        root.add(transfer, 19, 10);
 
 
 
