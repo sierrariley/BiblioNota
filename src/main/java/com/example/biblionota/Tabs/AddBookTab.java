@@ -1,9 +1,8 @@
 package com.example.biblionota.Tabs;
 
 
-import com.example.biblionota.pojo.Tag;
-import com.example.biblionota.tables.BookTable;
-import com.example.biblionota.tables.TagTable;
+import com.example.biblionota.pojo.*;
+import com.example.biblionota.tables.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
@@ -24,6 +23,9 @@ public class AddBookTab extends Tab {
         ObservableList<String> formatOptions = FXCollections.observableArrayList("Physical", "Audiobook", "Ebook");
         TagTable tagTable = TagTable.getInstance();
         BookTable bookTable = BookTable.getInstance();
+        AuthorTable authorTable = AuthorTable.getInstance();
+        ReviewTable reviewTable = ReviewTable.getInstance();
+        GenreTable genreTable = GenreTable.getInstance();
 
 
         Text bookName = new Text("Book Title: ");
@@ -53,7 +55,9 @@ public class AddBookTab extends Tab {
         root.add(dateFinished, 1, 4);
 
         Label genre = new Label("Genre: ");
-        TextField addGenre = new TextField();
+//        TextField addGenre = new TextField();
+        ComboBox<Genre> addGenre = new ComboBox<>();
+        addGenre.setItems(FXCollections.observableArrayList(genreTable.getAllGenres()));
         root.add(genre, 0, 5);
         root.add(addGenre, 1, 5);
 
@@ -127,34 +131,38 @@ public class AddBookTab extends Tab {
             Tag newTagName = new Tag(newTag.getText());
             if(newTag != null){
             addTag.getItems().add(newTagName);
+
             newTag.clear();
             }
         });
         root.add(createTag, 2,11);
 
 
-
-
-
+        /**
+         * This button actions adds all filled out entries into its respective tables
+         */
         Button submit = new Button("Add Book!");
         submit.setOnAction(e ->{
-//            Book book = new Book(
-//                    book.getId(),
-//                    addBookName.getText(),
-//                    isbn.getText(),
-//                    numPages.getText(),
-//                     //TODO: See if this is right
-//                     Integer.parseInt(dateStarted.toString()),
-//                    Integer.parseInt(dateFinished.toString()),
-//                    Integer.parseInt(genre.getText()),
-//                     bookFormat.getSelectionModel().getSelectedItem(),
-//                    review.getText(),
-//                    starRating.getText(),
-//                    tagName.getSelectionModel().getSelectedItem().getId(),
-//                     Integer.parseInt(author.getText()));
+            Book book = new Book(
+                    addBookName.getText(),
+                    Integer.parseInt(fillIsbn.getText()),
+                    Integer.parseInt(numPages.getText()),
+                    dateStarted.toString(),
+                    dateFinished.toString(),
+                    addGenre.getSelectionModel().getSelectedItem().getId(),
+                    Integer.parseInt((String) bookFormat.getSelectionModel().getSelectedItem()),
+                    Integer.parseInt(addReview.getText()));
 
-//            bookTable.createBook(book);
+
+            bookTable.createBook(book);
+            Author author1 = new Author(addAuthor.getText());
+            authorTable.createAuthor(author1);
+            Tag tag1 = new Tag(addTag.getItems().toString());
+            tagTable.createTag(tag1);
             System.out.println("Book added");
+            Review starReview = new Review(Integer.parseInt(bookRating.getItems().toString()));
+            reviewTable.createReview(starReview);
+
         });
         root.add(submit, 0, 12);
 

@@ -13,6 +13,10 @@ public class Review {
         this.star_rating = star_rating;
     }
 
+    public Review(int star_rating) {
+        this.star_rating = star_rating;
+    }
+
     //getters and setters
     public int getId() {
         return id;
