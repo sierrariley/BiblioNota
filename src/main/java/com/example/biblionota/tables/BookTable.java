@@ -208,17 +208,39 @@ public class BookTable implements BookDAO {
         return books;
     }
 
-    public int getItemCount(int book) {
+    public int getGenreCount(int book) {
         int count = -1;
         try {
             PreparedStatement getCount = db.getConnection()
-                    .prepareStatement("SELECT * FROM " + DBConst.TABLE_BOOK +
-                            " WHERE " + DBConst.BOOK_COLUMN_NAME +
+                    .prepareStatement("SELECT COUNT( " + DBConst.BOOK_COLUMN_NAME +
+                            ") as num_genre " +
+                            "FROM " + DBConst.TABLE_BOOK +
+                            " WHERE " + DBConst.BOOK_COLUMN_GENRE +
                             " = '" + book + "'", ResultSet.TYPE_SCROLL_SENSITIVE,
                             ResultSet.CONCUR_UPDATABLE);
             ResultSet data = getCount.executeQuery();
-            data.last();
-            count = data.getRow();
+            data.next();
+            count = data.getInt("num_genre");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
+
+    public int getFormatCount(int book) {
+        int count = -1;
+
+        try {
+            PreparedStatement getCount = db.getConnection()
+                    .prepareStatement("SELECT COUNT( " + DBConst.BOOK_COLUMN_NAME +
+                                    ") as num_format " +
+                                    "FROM " + DBConst.TABLE_BOOK +
+                                    " WHERE " + DBConst.BOOK_COLUMN_FORMAT +
+                                    " = '" + book + "'", ResultSet.TYPE_SCROLL_SENSITIVE,
+                            ResultSet.CONCUR_UPDATABLE);
+            ResultSet data = getCount.executeQuery();
+            data.next();
+            count = data.getInt("num_format");
         } catch (Exception e) {
             e.printStackTrace();
         }
