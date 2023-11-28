@@ -20,27 +20,27 @@ public class AddBookTab extends Tab {
         GridPane root = new GridPane();
         BorderPane pane = new BorderPane();
         ObservableList<Integer> rating = FXCollections.observableArrayList(1, 2, 3, 4, 5);
-        ObservableList<String> formatOptions = FXCollections.observableArrayList("Physical", "Audiobook", "Ebook");
         TagTable tagTable = TagTable.getInstance();
         BookTable bookTable = BookTable.getInstance();
         AuthorTable authorTable = AuthorTable.getInstance();
         ReviewTable reviewTable = ReviewTable.getInstance();
         GenreTable genreTable = GenreTable.getInstance();
+        FormatTable formatTable = FormatTable.getInstance();
 
 
         Text bookName = new Text("Book Title: ");
-        TextField addBookName = new TextField();
+        TextField addBookName = new TextField("Book name");
         root.add(bookName, 0, 0);
         root.add(addBookName, 1, 0);
 
 
         Text isbn = new Text("ISBN: ");
-        TextField fillIsbn = new TextField();
+        TextField fillIsbn = new TextField("136932506");
         root.add(isbn, 0, 1);
         root.add(fillIsbn, 1, 1);
 
         Text pages = new Text("Pages:");
-        TextField numPages = new TextField();
+        TextField numPages = new TextField("100");
         root.add(pages, 0, 2);
         root.add(numPages, 1,2);
 
@@ -62,13 +62,13 @@ public class AddBookTab extends Tab {
         root.add(addGenre, 1, 5);
 
         Text format = new Text("Format");
-        ComboBox bookFormat = new ComboBox(formatOptions);
+        ComboBox bookFormat = new ComboBox(FXCollections.observableArrayList(formatTable.getAllFormats()));
         root.add(format, 0, 6);
         root.add(bookFormat, 1, 6);
 
 
         Label review = new Label("Review: ");
-        TextArea addReview = new TextArea();
+        TextArea addReview = new TextArea("This is a review");
         root.add(review, 0, 7);
         root.add(addReview, 1, 7);
 
@@ -78,7 +78,7 @@ public class AddBookTab extends Tab {
         root.add(bookRating, 1, 8);
 
         Label author = new Label("Author: ");
-        TextField addAuthor = new TextField();
+        TextField addAuthor = new TextField("Author name");
         root.add(author, 0, 9);
         root.add(addAuthor, 1, 9);
 
@@ -143,6 +143,13 @@ public class AddBookTab extends Tab {
          */
         Button submit = new Button("Add Book!");
         submit.setOnAction(e ->{
+            int reviewEntry = Integer.parseInt(addReview.getText());
+
+            Review review1 = new Review(reviewEntry,
+                    ((Review)(bookRating.getSelectionModel().getSelectedItem())).getId());
+            reviewTable.createReview(review1);
+//            reviewId = "SELECT las_insert_id() from reviews as id";
+
             Book book = new Book(
                     addBookName.getText(),
                     Integer.parseInt(fillIsbn.getText()),
@@ -150,18 +157,22 @@ public class AddBookTab extends Tab {
                     dateStarted.toString(),
                     dateFinished.toString(),
                     addGenre.getSelectionModel().getSelectedItem().getId(),
-                    Integer.parseInt((String) bookFormat.getSelectionModel().getSelectedItem()),
-                    Integer.parseInt(addReview.getText()));
+                    ((Format) bookFormat.getSelectionModel().getSelectedItem()).getId(),
+                    ((Review) reviewEntry).getId());
 
-
+/**
+ * In the submit button
+ * grab the review and inser a review into the review table
+ * use last_insert_id to grab the id of that reviw
+ * insert book and use review id
+ */
             bookTable.createBook(book);
             Author author1 = new Author(addAuthor.getText());
             authorTable.createAuthor(author1);
             Tag tag1 = new Tag(addTag.getItems().toString());
             tagTable.createTag(tag1);
             System.out.println("Book added");
-            Review starReview = new Review(Integer.parseInt(bookRating.getItems().toString()));
-            reviewTable.createReview(starReview);
+
 
         });
         root.add(submit, 0, 12);

@@ -13,9 +13,12 @@ public class Review {
         this.star_rating = star_rating;
     }
 
-    public Review(int star_rating) {
+    public Review(int id, int star_rating) {
+        this.id = id;
         this.star_rating = star_rating;
     }
+
+
 
     //getters and setters
     public int getId() {
