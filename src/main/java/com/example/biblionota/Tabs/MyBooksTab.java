@@ -92,7 +92,6 @@ public class MyBooksTab extends Tab {
             book.deleteBook(remove.getId());
             refreshTable();
             System.out.println();
-
         });
         root.setBottom(removeBook);
 
