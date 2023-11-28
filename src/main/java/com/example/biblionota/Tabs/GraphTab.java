@@ -1,29 +1,26 @@
 package com.example.biblionota.Tabs;
 
 import com.example.biblionota.pojo.Book;
+import com.example.biblionota.pojo.Format;
 import com.example.biblionota.pojo.Genre;
 import com.example.biblionota.tables.BookTable;
+import com.example.biblionota.tables.FormatTable;
 import com.example.biblionota.tables.GenreTable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.*;
-import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.layout.BorderPane;
-
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class GraphTab extends Tab {
     private static GraphTab instance;
 
-    private PieChart pieChart;
+    private final PieChart pieChart;
 
-    private NumberAxis yAxis;
-    private CategoryAxis xAxis;
-    private LineChart<String, Number> lineChart;
+    private final LineChart<String, Number> lineChart;
+    private final BarChart<String, Number> barChart;
 
-    private BarChart barChart;
     private ScatterChart scatterChart;
 
 
@@ -32,45 +29,38 @@ public class GraphTab extends Tab {
         this.setText("Graphs");
         BorderPane root = new BorderPane();
 
-        //Chart 1
+        //Chart 2
         pieChart = new PieChart();
         pieChart.setTitle("Genres");
         pieChart.setLabelsVisible(true);
 
-        //Chart 2
-        yAxis = new NumberAxis();
+        //Chart 1
+        NumberAxis yAxis = new NumberAxis();
         yAxis.setLabel("# of Books Read");
-        xAxis = new CategoryAxis();
+        CategoryAxis xAxis = new CategoryAxis();
         xAxis.setLabel("Months");
         lineChart = new LineChart<>(xAxis, yAxis);
-        lineChart.setTitle("Books Read");
+        lineChart.setTitle("Books Read Over Months");
+        lineChart.setLegendVisible(false);
+
+        //Chart 3
+        NumberAxis yAxisBar = new NumberAxis();
+        yAxisBar.setLabel("# of Books Read");
+        CategoryAxis xAxisBar = new CategoryAxis();
+        xAxisBar.setLabel("Formats");
+        barChart = new BarChart<>(xAxisBar, yAxisBar);
+        barChart.setLegendVisible(false);
 
 
-
-
-
-
-
-        // [] []
-        // [] []
-        //  btn
         root.setTop(lineChart);
+        root.setLeft(barChart);
         root.setCenter(pieChart);
-
-        Button refresh = new Button("Refresh");
-        refresh.setOnAction(e->{
-            generateGenreChart();
-            generateBooksPerMonthChart();
-            generateStylesReadChart();
-            generateLengthOfBooksChart();
-        });
+//        root.setRight();
 
         generateGenreChart();
         generateBooksPerMonthChart();
         generateStylesReadChart();
         generateLengthOfBooksChart();
-
-        root.setBottom(refresh);
 
         this.setContent(root);
     }
@@ -94,7 +84,7 @@ public class GraphTab extends Tab {
         }
 
         ObservableList<XYChart.Data<String, Number>> list = FXCollections.observableArrayList();
-        for (int i = 0; i < months.length - 1; i++) {
+        for (int i = 0; i < months.length; i++) {
             list.add(new XYChart.Data<>(months[i], booksPerMonth[i + 1]));
         }
 
@@ -102,6 +92,7 @@ public class GraphTab extends Tab {
 
         //Set data for lineChart (xAxis, yAxis)
         lineChart.getData().add(series);
+
     }
 
     //Chart 2 - Genres of Books Read (Pie)
@@ -114,7 +105,7 @@ public class GraphTab extends Tab {
 
         ArrayList<PieChart.Data> data = new ArrayList<>();
         for (Genre genre : genres) {
-            double count = book.getItemCount(genre.getId());
+            double count = book.getGenreCount(genre.getId());
             if (count > 0) {
                 data.add(new PieChart.Data(genre.getName(), count));
             }
@@ -126,7 +117,22 @@ public class GraphTab extends Tab {
 
     //Chart 3 - Style of Books (Bar)
     public void generateStylesReadChart() {
+        BookTable book = BookTable.getInstance();
+        FormatTable formatTable = FormatTable.getInstance();
 
+        ArrayList<Format> formats = formatTable.getAllFormats();
+
+        ObservableList<XYChart.Data<String, Number>> data = FXCollections.observableArrayList();
+
+        for (Format format: formats) {
+            double count = book.getFormatCount(format.getId());
+            if (count > 0) {
+                data.add(new XYChart.Data<>(format.getType(), count));
+            }
+        }
+
+        XYChart.Series<String, Number> series = new XYChart.Series<>(data);
+        barChart.getData().add(series);
     }
 
     //Chart 4 - Average Length of Books
