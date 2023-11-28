@@ -2,7 +2,9 @@ package com.example.biblionota.Panes;
 
 import com.example.biblionota.Tabs.AddBookTab;
 import com.example.biblionota.Tabs.MyBooksTab;
+
 import com.example.biblionota.Tabs.RemoveBookTab;
+
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -43,6 +45,7 @@ public class HomePage extends BorderPane {
         RemoveBookTab removeBookTab = RemoveBookTab.getInstance();
 
         tabPane.getTabs().addAll(myBooksTab, addBookTab, removeBookTab);
+
         tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 
 //        root.setTop(menuBar);
