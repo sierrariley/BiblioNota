@@ -128,12 +128,14 @@ public class BookTable implements BookDAO {
     public void deleteBook(int id) {
         String query = "DELETE FROM " + DBConst.TABLE_BOOK + " WHERE " +
                 DBConst.BOOK_COLUMN_ID + " = " + id;
+        System.out.println(query);
         try {
             db.getConnection().createStatement().execute(query);
             System.out.println("Deleted Record");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
     }
 
     public static BookTable getInstance() {
@@ -157,8 +159,8 @@ public class BookTable implements BookDAO {
                  formats.type AS format_name,
                  reviews.description AS review_description,
                  reviews.star_rating AS review_star_rating,
-                 GROUP_CONCAT(authors.author_name) AS author_names,
-                 GROUP_CONCAT(tags.tag_name) AS tag_names
+                 GROUP_CONCAT(DISTINCT authors.name) AS author_names,
+                 GROUP_CONCAT(DISTINCT tags.name) AS tag_names
                 FROM books
                 JOIN genres ON books.genre = genres.id
                 JOIN formats ON books.format = formats.id
