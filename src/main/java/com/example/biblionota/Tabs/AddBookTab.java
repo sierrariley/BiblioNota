@@ -1,6 +1,8 @@
 package com.example.biblionota.Tabs;
 
 
+import com.example.biblionota.database.DBConst;
+import com.example.biblionota.database.Database;
 import com.example.biblionota.pojo.*;
 import com.example.biblionota.tables.*;
 import javafx.collections.FXCollections;
@@ -9,6 +11,13 @@ import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Locale;
 
 
 public class AddBookTab extends Tab {
@@ -57,12 +66,12 @@ public class AddBookTab extends Tab {
         Label genre = new Label("Genre: ");
 //        TextField addGenre = new TextField();
         ComboBox<Genre> addGenre = new ComboBox<>();
-        addGenre.setItems(FXCollections.observableArrayList(genreTable.getAllGenres()));
+        addGenre.setItems(FXCollections.observableArrayList(genreTable.getAllGenres().get(1)));
         root.add(genre, 0, 5);
         root.add(addGenre, 1, 5);
 
         Text format = new Text("Format");
-        ComboBox bookFormat = new ComboBox(FXCollections.observableArrayList(formatTable.getAllFormats()));
+        ComboBox bookFormat = new ComboBox(FXCollections.observableArrayList(formatTable.getAllFormats().get(1)));
         root.add(format, 0, 6);
         root.add(bookFormat, 1, 6);
 
@@ -143,27 +152,27 @@ public class AddBookTab extends Tab {
          */
         Button submit = new Button("Add Book!");
         submit.setOnAction(e ->{
-            int reviewEntry = Integer.parseInt(addReview.getText());
 
-            Review review1 = new Review(reviewEntry,
-                    ((Review)(bookRating.getSelectionModel().getSelectedItem())).getId());
+            Review review1 = new Review(addReview.getText(),
+                    Integer.parseInt(String.valueOf(bookRating.getSelectionModel().getSelectedItem())));
             reviewTable.createReview(review1);
-//            reviewId = "SELECT las_insert_id() from reviews as id";
 
+           LocalDate finished =  dateFinished.getValue();
+           LocalDate started = dateStarted.getValue();
             Book book = new Book(
                     addBookName.getText(),
                     Integer.parseInt(fillIsbn.getText()),
                     Integer.parseInt(numPages.getText()),
-                    dateStarted.toString(),
-                    dateFinished.toString(),
+                    dateStarted.getValue().toString(),
+                    dateFinished.getValue().toString(),
                     addGenre.getSelectionModel().getSelectedItem().getId(),
                     ((Format) bookFormat.getSelectionModel().getSelectedItem()).getId(),
-                    ((Review) reviewEntry).getId());
+                    reviewTable.getLasId());
 
 /**
  * In the submit button
- * grab the review and inser a review into the review table
- * use last_insert_id to grab the id of that reviw
+ * grab the review and insert a review into the review table
+ * use last_insert_id to grab the id of that review
  * insert book and use review id
  */
             bookTable.createBook(book);
@@ -181,7 +190,6 @@ public class AddBookTab extends Tab {
         this.setContent(pane);
 
 
-
     }
 
 
@@ -191,4 +199,6 @@ public class AddBookTab extends Tab {
         }
         return instance;
     }
+
+
 }

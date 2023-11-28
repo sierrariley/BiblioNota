@@ -13,8 +13,8 @@ public class Review {
         this.star_rating = star_rating;
     }
 
-    public Review(int id, int star_rating) {
-        this.id = id;
+    public Review(String description, int star_rating) {
+        this.description = description;
         this.star_rating = star_rating;
     }
 

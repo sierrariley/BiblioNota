@@ -57,8 +57,7 @@ public class TagTable implements TagDAO {
     @Override
     public void createTag(Tag tag) {
         String query = "INSERT INTO " + DBConst.TABLE_TAGS +
-                "(" + DBConst.TAGS_COLUMN_NAME + ", " +
-                DBConst.REVIEW_COLUMN_DESC +") VALUES ('" +
+                "(" + DBConst.TAGS_COLUMN_NAME + ") VALUES ('" +
                 tag.getName() + "')";
 
         try {

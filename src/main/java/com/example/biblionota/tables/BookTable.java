@@ -76,7 +76,7 @@ public class BookTable implements BookDAO {
     @Override
     public void createBook(Book book) {
         String query = "INSERT INTO " + DBConst.TABLE_BOOK +
-                "(" + DBConst.BOOK_COLUMN_NAME + ", " +
+                "(" +
                 DBConst.BOOK_COLUMN_NAME + ", " +
                 DBConst.BOOK_COLUMN_ISBN + ", " +
                 DBConst.BOOK_COLUMN_PAGES + ", " +
