@@ -11,6 +11,14 @@ public class Tag {
         this.name = name;
     }
 
+    /**
+     * Used when creating a tag without an id
+     * @param name
+     */
+    public Tag(String name) {
+        this.name = name;
+    }
+
     //getters and setters
 
     public int getId() {

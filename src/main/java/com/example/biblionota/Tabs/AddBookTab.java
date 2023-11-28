@@ -96,6 +96,7 @@ public class AddBookTab extends Tab {
             ObservableList<Tag> selectedTag = tagName.getSelectionModel().getSelectedItems();
             if(!selectedTag.isEmpty()){
                 addTag.getItems().addAll(selectedTag);
+                //Remove selected tag from list
                 tagName.getItems().removeAll(selectedTag);
             }
 
@@ -105,14 +106,33 @@ public class AddBookTab extends Tab {
             ObservableList<Tag> selectedTag = addTag.getSelectionModel().getSelectedItems();
            if(!selectedTag.isEmpty()){
                tagName.getItems().addAll(selectedTag);
+               //repopulate selected tag into original list
                addTag.getItems().removeAll(selectedTag);
            }
 
         });
-
-
         root.add(returnTag, 20, 10);
         root.add(transfer, 19, 10);
+        Label addNewTag = new Label("Create Tag");
+        TextField newTag = new TextField();
+        root.add(addNewTag, 0, 11);
+        root.add(newTag, 1,11);
+
+        /**
+         * Allows user to input a new tag name and populate it in the addTag list.
+         * It will be added to the tagTable when book is created
+         */
+        Button createTag = new Button("Add Tag ^");
+        createTag.setOnAction(e ->{
+            Tag newTagName = new Tag(newTag.getText());
+            if(newTag != null){
+            addTag.getItems().add(newTagName);
+            newTag.clear();
+            }
+        });
+        root.add(createTag, 2,11);
+
+
 
 
 
@@ -136,7 +156,7 @@ public class AddBookTab extends Tab {
 //            bookTable.createBook(book);
             System.out.println("Book added");
         });
-        root.add(submit, 0, 11);
+        root.add(submit, 0, 12);
 
         pane.setCenter(root);
         this.setContent(pane);
