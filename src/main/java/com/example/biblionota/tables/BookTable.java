@@ -126,11 +126,22 @@ public class BookTable implements BookDAO {
 
     @Override
     public void deleteBook(int id) {
-        String query = "DELETE FROM " + DBConst.TABLE_BOOK + " WHERE " +
+        //Delete from books_authors where id = xxx
+        String query1 = "DELETE FROM " + DBConst.TABLE_BOOK_AUTHOR + " WHERE " +
+                DBConst.BOOK_AUTHOR_COLUMN_ID + " = " + id;
+        //Delete from books_tags where id = xxx
+        String query2 = "DELETE FROM " + DBConst.TABLE_BOOK_TAGS + " WHERE " +
+                DBConst.BOOK_TAGS_COLUMN_ID + " = " + id;
+        //Delete from books where id = xxx
+        String query3 = "DELETE FROM " + DBConst.TABLE_BOOK + " WHERE " +
                 DBConst.BOOK_COLUMN_ID + " = " + id;
-        System.out.println(query);
+        System.out.println(query3);
         try {
-            db.getConnection().createStatement().execute(query);
+            db.getConnection().createStatement().execute(query1);
+            System.out.println("Deleted books_authors instance");
+            db.getConnection().createStatement().execute(query2);
+            System.out.println("Deleted books_tags instance");
+            db.getConnection().createStatement().execute(query3);
             System.out.println("Deleted Record");
         } catch (SQLException e) {
             throw new RuntimeException(e);
