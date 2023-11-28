@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 
@@ -22,6 +23,7 @@ public class AddBookTab extends Tab {
     private AddBookTab(){
         this.setText("Add Book");
         GridPane root = new GridPane();
+        BorderPane pane = new BorderPane();
         ObservableList<Integer> rating = FXCollections.observableArrayList(1, 2, 3, 4, 5);
         ObservableList<String> formatOptions = FXCollections.observableArrayList("Physical", "Audiobook", "Ebook");
         TagTable tagTable = TagTable.getInstance();
@@ -81,13 +83,13 @@ public class AddBookTab extends Tab {
         root.add(addAuthor, 1, 9);
 
 
+        //TODO:
         Label tag = new Label("Tag: ");
-        ComboBox<Tag> tagName = new ComboBox<>();
-
-        tagName.setItems(FXCollections.observableArrayList(tagTable.getAllTags()));
-//        TextField addTag = new TextField();
+        ListView<Tag> tagName = new ListView<>(FXCollections.observableArrayList(tagTable.getAllTags()));
+        TextField addTag = new TextField();
         root.add(tag, 0, 10);
-        root.add(tagName, 1, 10);
+        root.add(addTag, 1,10);
+        pane.setRight(tagName);
 
 
 
@@ -113,7 +115,9 @@ public class AddBookTab extends Tab {
         });
         root.add(submit, 0, 11);
 
-        this.setContent(root);
+        pane.setCenter(root);
+        this.setContent(pane);
+
 
 
     }
