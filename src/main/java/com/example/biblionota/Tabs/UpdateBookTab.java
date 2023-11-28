@@ -9,7 +9,7 @@ import javafx.scene.layout.GridPane;
 
 import java.util.ArrayList;
 
-public class UpdateBookTab extends Tab {
+public class UpdateBookTab extends GridPane {
 
     public static UpdateBookTab instance;
 
@@ -29,15 +29,7 @@ public class UpdateBookTab extends Tab {
         return 0;
     }
 
-    private UpdateBookTab(){
-        BookTable bookTable = BookTable.getInstance();
-        AuthorTable authorTable = AuthorTable.getInstance();
-        GenreTable genreTable = GenreTable.getInstance();
-        ReviewTable reviewTable = ReviewTable.getInstance();
-        TagTable tagTable = TagTable.getInstance();
-
-
-    }
+   
 
     public static UpdateBookTab getInstance(){
         if(instance == null){
