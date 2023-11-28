@@ -118,7 +118,12 @@ public class DisplayBook {
     }
 
     public String getTag_names() {
-        return tag_names;
+        if (tag_names == null) {
+            return "";
+        } else {
+            return tag_names;
+        }
+
     }
 
     public void setTag_names(String tag_names) {
