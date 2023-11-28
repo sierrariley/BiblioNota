@@ -1,5 +1,6 @@
 package com.example.biblionota.Tabs;
 
+import com.example.biblionota.pojo.Book;
 import com.example.biblionota.pojo.DisplayBook;
 import com.example.biblionota.tables.AuthorTable;
 import com.example.biblionota.tables.BookTable;
@@ -81,6 +82,19 @@ public class MyBooksTab extends Tab {
         column11.setCellValueFactory(e-> new SimpleStringProperty(String.valueOf(e.getValue().getTag_names())));
         //TODO: allow user to create new tag and select multiple tags
 
+        /**
+         *This allows the book to be deleted from table when button is pressed
+         */
+        Button removeBook = new Button("Delete Book");
+        removeBook.setOnAction(e -> {
+            DisplayBook remove = (DisplayBook) tableview.getSelectionModel().getSelectedItem();
+            System.out.println(remove.getId());
+            book.deleteBook(remove.getId());
+            refreshTable();
+            System.out.println();
+
+        });
+        root.setBottom(removeBook);
 
 
         tableview.getColumns().addAll(column1, column2, column3, column4, column5, column6, column7, column8, column9, column10, column11);
@@ -89,10 +103,16 @@ public class MyBooksTab extends Tab {
 
         this.setContent(root);
 
+    }
 
-
-
-
+    /**
+     * refreshTable() - clears the table once a book has been delete, and then repopulates with the updated table
+     * minus the deleted book
+     */
+    public void refreshTable(){
+        BookTable book = BookTable.getInstance();
+        tableview.getItems().clear();
+        tableview.getItems().addAll(book.getDisplayBooks());
     }
 
 

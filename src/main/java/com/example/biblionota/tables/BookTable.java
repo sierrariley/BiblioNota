@@ -128,12 +128,14 @@ public class BookTable implements BookDAO {
     public void deleteBook(int id) {
         String query = "DELETE FROM " + DBConst.TABLE_BOOK + " WHERE " +
                 DBConst.BOOK_COLUMN_ID + " = " + id;
+        System.out.println(query);
         try {
             db.getConnection().createStatement().execute(query);
             System.out.println("Deleted Record");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
     }
 
     public static BookTable getInstance() {
