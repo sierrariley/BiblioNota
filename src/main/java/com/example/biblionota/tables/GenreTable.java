@@ -7,6 +7,7 @@ import com.example.biblionota.pojo.Author;
 import com.example.biblionota.pojo.Genre;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
@@ -71,7 +72,15 @@ public class GenreTable implements GenreDAO {
 
     @Override
     public void updateGenre(Genre genre) {
-        //TODO
+        String query = "UPDATE " + DBConst.TABLE_GENRE + " SET " +
+                DBConst.GENRE_COLUMN_NAME + "= " + genre.getName() +
+                " WHERE " + DBConst.GENRE_COLUMN_ID + " = " + genre.getId();
+        try {
+            Statement updateGenre = db.getConnection().createStatement();
+            updateGenre.executeUpdate(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public static GenreTable getInstance() {

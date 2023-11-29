@@ -5,6 +5,7 @@ import com.example.biblionota.database.DBConst;
 import com.example.biblionota.database.Database;
 import com.example.biblionota.pojo.Tag;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
@@ -56,8 +57,7 @@ public class TagTable implements TagDAO {
     @Override
     public void createTag(Tag tag) {
         String query = "INSERT INTO " + DBConst.TABLE_TAGS +
-                "(" + DBConst.TAGS_COLUMN_NAME + ", " +
-                DBConst.REVIEW_COLUMN_DESC +") VALUES ('" +
+                "(" + DBConst.TAGS_COLUMN_NAME + ") VALUES ('" +
                 tag.getName() + "')";
 
         try {
@@ -70,12 +70,28 @@ public class TagTable implements TagDAO {
 
     @Override
     public void updateTag(Tag tag) {
-        //TODO
+        String query = "UPDATE " + DBConst.TABLE_TAGS + " SET " +
+                DBConst.TAGS_COLUMN_NAME + "= " + tag.getName() +
+                " WHERE " + DBConst.TAGS_COLUMN_ID + " = " + tag.getId();
+        try {
+            Statement updateTag = db.getConnection().createStatement();
+            updateTag.executeUpdate(query);
+            System.out.println("Record Updated");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void deleteTag(int id) {
-        //TODO
+        String query = "DELETE FROM " + DBConst.TABLE_TAGS + " WHERE " +
+                DBConst.TAGS_COLUMN_ID + " = " + id;
+        try {
+            db.getConnection().createStatement().execute(query);
+            System.out.println("Deleted Record");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static TagTable getInstance() {

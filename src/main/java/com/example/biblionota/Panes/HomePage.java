@@ -1,6 +1,7 @@
 package com.example.biblionota.Panes;
 
 import com.example.biblionota.Tabs.AddBookTab;
+import com.example.biblionota.Tabs.GraphTab;
 import com.example.biblionota.Tabs.MyBooksTab;
 import com.example.biblionota.Tabs.UpdateBookTab;
 import javafx.geometry.Pos;
@@ -42,9 +43,10 @@ public class HomePage extends BorderPane {
         TabPane tabPane = new TabPane();
         MyBooksTab myBooksTab = MyBooksTab.getInstance();
         AddBookTab addBookTab = AddBookTab.getInstance();
-        UpdateBookTab updateBookTab = UpdateBookTab.getInstance();
+        GraphTab graphTab = GraphTab.getInstance();
 
-        tabPane.getTabs().addAll(myBooksTab, addBookTab, updateBookTab);
+        tabPane.getTabs().addAll(myBooksTab, addBookTab, graphTab);
+
         tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 
 //        root.setTop(menuBar);

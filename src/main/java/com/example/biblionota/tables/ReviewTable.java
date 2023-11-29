@@ -6,7 +6,9 @@ import com.example.biblionota.database.Database;
 import com.example.biblionota.pojo.Genre;
 import com.example.biblionota.pojo.Review;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
@@ -61,7 +63,7 @@ public class ReviewTable implements ReviewDAO {
     public void createReview(Review review) {
         String query = "INSERT INTO " + DBConst.TABLE_REVIEW +
                 "(" + DBConst.REVIEW_COLUMN_DESC + ", " +
-                DBConst.REVIEW_COLUMN_DESC +") VALUES ('" +
+                DBConst.REVIEW_COLUMN_STARS +") VALUES ('" +
                 review.getDescription() + "', '" +
                 review.getStar_rating() + "')";
 
@@ -69,18 +71,49 @@ public class ReviewTable implements ReviewDAO {
             db.getConnection().createStatement().execute(query);
             System.out.println("Inserted Record");
         } catch (Exception e) {
+            System.out.println("break");
             e.printStackTrace();
         }
     }
 
     @Override
     public void updateReview(Review review) {
-        //TODO
+        String query = "UPDATE " + DBConst.TABLE_REVIEW + " SET " +
+                DBConst.REVIEW_COLUMN_DESC + "= " + review.getDescription() + ", " +
+                DBConst.REVIEW_COLUMN_STARS + "= " + review.getStar_rating() +
+                " WHERE " + DBConst.REVIEW_COLUMN_ID + " = " + review.getId();
+        try {
+            Statement updateReview = db.getConnection().createStatement();
+            updateReview.executeUpdate(query);
+            System.out.println("Record Updated");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void deleteReview(int id) {
-        //TODO
+        String query = "DELETE FROM " + DBConst.TABLE_REVIEW + " WHERE " +
+                DBConst.REVIEW_COLUMN_ID + " = " + id;
+        try {
+            db.getConnection().createStatement().execute(query);
+            System.out.println("Deleted Record");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public int getLasId(){
+        int id = -1;
+        try{
+            PreparedStatement getId = db.getConnection().prepareStatement("SELECT last_insert_id()  as id");
+            ResultSet data = getId.executeQuery();
+            data.next();
+            id = data.getInt("id");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return id;
     }
 
     public static ReviewTable getInstance() {
@@ -89,4 +122,6 @@ public class ReviewTable implements ReviewDAO {
         }
         return instance;
     }
+
+
 }
