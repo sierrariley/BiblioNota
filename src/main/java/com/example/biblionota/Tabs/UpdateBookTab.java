@@ -2,10 +2,13 @@ package com.example.biblionota.Tabs;
 
 import com.example.biblionota.pojo.Book;
 import com.example.biblionota.pojo.DatabaseBook;
+import com.example.biblionota.pojo.Tag;
 import com.example.biblionota.tables.*;
 import javafx.geometry.Insets;
+import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
 
 import java.util.ArrayList;
 
@@ -28,14 +31,30 @@ public class UpdateBookTab extends GridPane {
         }
         return 0;
     }
+    public UpdateBookTab(Book book){
+        this.setPadding(new Insets(10,10,0,10));
+        this.setVgap(10);
+        this.setHgap(10);
+        BookTable bookTable = BookTable.getInstance();
+        TagTable tagTable = TagTable.getInstance();
+        ReviewTable reviewTable = ReviewTable.getInstance();
+
+        Text tag = new Text("Tag:");
+        ListView<Tag> tags = new ListView<>();
+        
+
+
+
+
+    }
 
    
 
-    public static UpdateBookTab getInstance(){
-        if(instance == null){
-            instance = new UpdateBookTab();
-        }
-        return instance;
-    }
+//    public static UpdateBookTab getInstance(){
+//        if(instance == null){
+//            instance = new UpdateBookTab();
+//        }
+//        return instance;
+//    }
 
 }
