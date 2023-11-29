@@ -150,15 +150,19 @@ public class AddBookTab extends Tab {
         /**
          * This button actions adds all filled out entries into its respective tables
          */
+
+        /**
+         * In the submit button
+         * grab the review and insert a review into the review table
+         * use last_insert_id to grab the id of that review
+         * insert book and use review id
+         */
         Button submit = new Button("Add Book!");
         submit.setOnAction(e ->{
 
             Review review1 = new Review(addReview.getText(),
                     Integer.parseInt(String.valueOf(bookRating.getSelectionModel().getSelectedItem())));
             reviewTable.createReview(review1);
-
-           LocalDate finished =  dateFinished.getValue();
-           LocalDate started = dateStarted.getValue();
             Book book = new Book(
                     addBookName.getText(),
                     Integer.parseInt(fillIsbn.getText()),
@@ -168,13 +172,6 @@ public class AddBookTab extends Tab {
                     addGenre.getSelectionModel().getSelectedItem().getId(),
                     ((Format) bookFormat.getSelectionModel().getSelectedItem()).getId(),
                     reviewTable.getLasId());
-
-/**
- * In the submit button
- * grab the review and insert a review into the review table
- * use last_insert_id to grab the id of that review
- * insert book and use review id
- */
             bookTable.createBook(book);
             Author author1 = new Author(addAuthor.getText());
             authorTable.createAuthor(author1);

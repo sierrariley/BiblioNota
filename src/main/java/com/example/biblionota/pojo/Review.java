@@ -17,6 +17,10 @@ public class Review {
         this.description = description;
         this.star_rating = star_rating;
     }
+    public Review(String description) {
+        this.description = description;
+
+    }
 
 
 

@@ -5,13 +5,12 @@ import com.example.biblionota.pojo.DisplayBook;
 import com.example.biblionota.tables.AuthorTable;
 import com.example.biblionota.tables.BookTable;
 import com.example.biblionota.tables.GenreTable;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
-import javafx.util.Callback;
 
 public class MyBooksTab extends Tab {
     private static MyBooksTab instance;
@@ -99,6 +98,17 @@ public class MyBooksTab extends Tab {
         tableview.getColumns().addAll(column1, column2, column3, column4, column5, column6, column7, column8, column9, column10, column11);
         tableview.getItems().addAll(book.getDisplayBooks());
         root.setCenter(tableview);
+
+        tableview.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                if(newValue != null){
+                    Book book = BookTable.getInstance().getBook(((DisplayBook) newValue).getId());
+                    UpdateBookPane pane = new UpdateBookPane(book);
+                    root.setRight(pane);
+                }
+            }
+        });
 
         this.setContent(root);
 

@@ -3,13 +3,10 @@ package com.example.biblionota.Panes;
 import com.example.biblionota.Tabs.AddBookTab;
 import com.example.biblionota.Tabs.GraphTab;
 import com.example.biblionota.Tabs.MyBooksTab;
-import com.example.biblionota.Tabs.UpdateBookTab;
-import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.text.Text;
 
 public class HomePage extends BorderPane {
     public HomePage() {
