@@ -135,14 +135,6 @@ public class GraphTab extends Tab {
         barChart.getData().add(series);
     }
 
-    //Chart 4 - Average Length of Books
-    public void generateLengthOfBooksChart() {
-
-    }
-
-
-
-
     public static GraphTab getInstance(){
         if (instance == null) {
             instance = new GraphTab();

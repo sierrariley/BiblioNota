@@ -146,7 +146,6 @@ public class BookTable implements BookDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
     }
 
     public static BookTable getInstance() {
@@ -245,5 +244,21 @@ public class BookTable implements BookDAO {
             e.printStackTrace();
         }
         return count;
+    }
+
+    public int[] getPageCounts() {
+        int[] pageCounts = {};
+
+        try {
+            PreparedStatement getCounts = db.getConnection().prepareStatement(
+                    "SELECT " + DBConst.BOOK_COLUMN_PAGES + " FROM " + DBConst.TABLE_BOOK);
+            ResultSet data = getCounts.executeQuery();
+            data.next();
+            //Take book pages, group by value. Count the numbers.
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return pageCounts;
     }
 }
