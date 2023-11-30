@@ -1,5 +1,8 @@
 package com.example.biblionota.Panes;
 
+import com.example.biblionota.HelloApplication;
+import com.example.biblionota.Scenes.CreditsScene;
+import com.example.biblionota.Scenes.HomeScene;
 import com.example.biblionota.Tabs.AddBookTab;
 import com.example.biblionota.Tabs.GraphTab;
 import com.example.biblionota.Tabs.MyBooksTab;
@@ -30,12 +33,19 @@ public class HomePage extends BorderPane {
 
         MenuBar menuBar = new MenuBar();
         Menu fileMenu = new Menu("File");
-        Menu credits = new Menu("Credits");
         MenuItem exit = new MenuItem("exit");
         exit.setOnAction(e->{
             System.exit(0);
         });
         fileMenu.getItems().add(exit);
+
+        Menu credits = new Menu("Credits");
+        MenuItem openCredits = new MenuItem("open");
+        credits.getItems().add(openCredits);
+        openCredits.setOnAction(e->{
+            HelloApplication.mainStage.setScene(new CreditsScene());
+        });
+
         menuBar.getMenus().addAll(fileMenu, credits);
 
 
@@ -55,19 +65,6 @@ public class HomePage extends BorderPane {
 
 //        this.add(logo, 1000,0);
 //        this.add(tabPane, 0, 1);
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     }
 
