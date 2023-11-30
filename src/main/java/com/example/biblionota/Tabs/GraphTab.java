@@ -55,12 +55,10 @@ public class GraphTab extends Tab {
         root.setTop(lineChart);
         root.setLeft(barChart);
         root.setCenter(pieChart);
-//        root.setRight();
 
         generateGenreChart();
         generateBooksPerMonthChart();
         generateStylesReadChart();
-        generateLengthOfBooksChart();
 
         this.setContent(root);
     }
