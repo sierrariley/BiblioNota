@@ -10,11 +10,15 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+/**
+ * BookTagTable class implements BookTagDAO
+ */
 public class BookTagTable implements BookTagDAO {
     private static BookTagTable instance;
     Database db;
-    private BookTagTable() { db = Database.getInstance(); }
     ArrayList<BookTag> booksTags;
+
+    private BookTagTable() { db = Database.getInstance(); }
     @Override
     public ArrayList<BookTag> getAllBookTag() {
         String query = "SELECT * FROM " + DBConst.TABLE_BOOK_TAGS;

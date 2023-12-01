@@ -11,13 +11,20 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+/**
+ * AuthorTable Class implements AuthorDAO
+ */
 public class AuthorTable implements AuthorDAO {
 
     private static AuthorTable instance;
+    ArrayList<Author> authors;
     Database db;
+
+    /**
+     * Creates instance
+     */
     private AuthorTable() { db = Database.getInstance(); }
 
-    ArrayList<Author> authors;
     @Override
     public ArrayList<Author> getAllAuthors() {
         String query = "SELECT * FROM " + DBConst.TABLE_AUTHOR;

@@ -1,5 +1,8 @@
 package com.example.biblionota.pojo;
 
+/**
+ * Book Class
+ */
 public class Book {
     //private variables
     private int id;
@@ -12,7 +15,18 @@ public class Book {
     private int format;
     private int review;
 
-    //constructor
+    /**
+     * Constructor
+     * @param id
+     * @param name
+     * @param isbn
+     * @param pages
+     * @param date_started
+     * @param date_finished
+     * @param genre
+     * @param format
+     * @param review
+     */
     public Book(int id, String name, int isbn, int pages, String date_started, String date_finished, int genre, int format, int review) {
         this.id = id;
         this.name = name;

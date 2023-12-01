@@ -1,8 +1,5 @@
 package com.example.biblionota.Tabs;
 
-
-import com.example.biblionota.database.DBConst;
-import com.example.biblionota.database.Database;
 import com.example.biblionota.pojo.*;
 import com.example.biblionota.tables.*;
 import javafx.collections.FXCollections;
@@ -12,14 +9,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Locale;
 
-
+/**
+ * AddBookTab Class extends Tab
+ */
 public class AddBookTab extends Tab {
 
     private static AddBookTab instance;
@@ -41,7 +34,6 @@ public class AddBookTab extends Tab {
         TextField addBookName = new TextField("Book name");
         root.add(bookName, 0, 0);
         root.add(addBookName, 1, 0);
-
 
         Text isbn = new Text("ISBN: ");
         TextField fillIsbn = new TextField("136932506");
@@ -188,7 +180,6 @@ public class AddBookTab extends Tab {
 
 
     }
-
 
     public static AddBookTab getInstance(){
         if(instance == null){

@@ -1,5 +1,8 @@
 package com.example.biblionota.pojo;
 
+/**
+ * DisplayBook Class
+ */
 public class DisplayBook {
     private int id;
     private String name;
@@ -14,6 +17,21 @@ public class DisplayBook {
     private String author_names;
     private String tag_names;
 
+    /**
+     * Args Constructor
+     * @param id
+     * @param name
+     * @param isbn
+     * @param pages
+     * @param date_started
+     * @param date_finished
+     * @param genre_name
+     * @param format_name
+     * @param review_description
+     * @param review_star_rating
+     * @param author_names
+     * @param tag_names
+     */
     public DisplayBook(int id, String name, int isbn, int pages, String date_started, String date_finished, String genre_name, String format_name, String review_description, int review_star_rating, String author_names, String tag_names) {
         this.id = id;
         this.name = name;
@@ -118,6 +136,10 @@ public class DisplayBook {
         this.author_names = author_names;
     }
 
+    /**
+     * Returns empty space instead of "null" if no tags are available
+     * @return
+     */
     public String getTag_names() {
         if(tag_names == null){
             return "";

@@ -1,5 +1,8 @@
 package com.example.biblionota.database;
 
+/**
+ * DBConst Class
+ */
 public class DBConst {
     //Where tables are created
 
