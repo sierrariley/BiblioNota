@@ -149,11 +149,9 @@ public class AddBookTab extends Tab {
                     dateFinishedPicker.getValue().toString(),
                     addGenreCombo.getSelectionModel().getSelectedItem().getId(),
                     ((Format) bookFormatCombo.getSelectionModel().getSelectedItem()).getId(),
-                    reviewTable.getLasId());
+                    reviewTable.getLastId());
             bookTable.createBook(book);
             int bookLastId = bookTable.getLastId();
-
-
 
             Author author1 = new Author(authorTxtField.getText());
             authorTable.createAuthor(author1);
