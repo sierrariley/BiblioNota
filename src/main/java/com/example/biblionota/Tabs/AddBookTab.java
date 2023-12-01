@@ -179,7 +179,10 @@ public class AddBookTab extends Tab {
             authorTable.createAuthor(author1);
             Tag tag1 = new Tag(addTag.getItems().toString());
             tagTable.createTag(tag1);
+            System.out.println(tag1);
             System.out.println("Book added");
+
+            MyBooksTab.getInstance().refreshTable();
 
 
         });
@@ -198,6 +201,7 @@ public class AddBookTab extends Tab {
         }
         return instance;
     }
+
 
 
 }
