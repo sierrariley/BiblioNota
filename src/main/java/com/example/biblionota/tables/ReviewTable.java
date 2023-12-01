@@ -6,6 +6,7 @@ import com.example.biblionota.database.Database;
 import com.example.biblionota.pojo.Genre;
 import com.example.biblionota.pojo.Review;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -19,6 +20,10 @@ public class ReviewTable implements ReviewDAO {
     Database db;
     ArrayList<Review> reviews;
 
+    /**
+     *
+     * @return
+     */
     private ReviewTable() { db = Database.getInstance(); }
 
     @Override
@@ -67,7 +72,7 @@ public class ReviewTable implements ReviewDAO {
     public void createReview(Review review) {
         String query = "INSERT INTO " + DBConst.TABLE_REVIEW +
                 "(" + DBConst.REVIEW_COLUMN_DESC + ", " +
-                DBConst.REVIEW_COLUMN_DESC +") VALUES ('" +
+                DBConst.REVIEW_COLUMN_STARS +") VALUES ('" +
                 review.getDescription() + "', '" +
                 review.getStar_rating() + "')";
 
@@ -75,6 +80,7 @@ public class ReviewTable implements ReviewDAO {
             db.getConnection().createStatement().execute(query);
             System.out.println("Inserted Record");
         } catch (Exception e) {
+            System.out.println("break");
             e.printStackTrace();
         }
     }
@@ -82,9 +88,11 @@ public class ReviewTable implements ReviewDAO {
     @Override
     public void updateReview(Review review) {
         String query = "UPDATE " + DBConst.TABLE_REVIEW + " SET " +
-                DBConst.REVIEW_COLUMN_DESC + "= " + review.getDescription() + ", " +
-                DBConst.REVIEW_COLUMN_STARS + "= " + review.getStar_rating() +
+                DBConst.REVIEW_COLUMN_DESC + " = '" + review.getDescription() + "', " +
+                DBConst.REVIEW_COLUMN_STARS + " = " + review.getStar_rating() +
                 " WHERE " + DBConst.REVIEW_COLUMN_ID + " = " + review.getId();
+
+        System.out.println(query);
         try {
             Statement updateReview = db.getConnection().createStatement();
             updateReview.executeUpdate(query);
@@ -93,6 +101,18 @@ public class ReviewTable implements ReviewDAO {
             e.printStackTrace();
         }
     }
+//    public void updateStarRating(Review review) {
+//        String query = "UPDATE " + DBConst.TABLE_REVIEW + " SET " +
+//                DBConst.REVIEW_COLUMN_STARS + " = " + review.getStar_rating() +
+//                " WHERE " + DBConst.REVIEW_COLUMN_ID + " = " + review.getId();
+//        try {
+//            Statement updateReview = db.getConnection().createStatement();
+//            updateReview.executeUpdate(query);
+//            System.out.println("Record Updated");
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     @Override
     public void deleteReview(int id) {
@@ -106,10 +126,25 @@ public class ReviewTable implements ReviewDAO {
         }
     }
 
+    public int getLasId(){
+        int id = -1;
+        try{
+            PreparedStatement getId = db.getConnection().prepareStatement("SELECT last_insert_id()  as id");
+            ResultSet data = getId.executeQuery();
+            data.next();
+            id = data.getInt("id");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return id;
+    }
+
     public static ReviewTable getInstance() {
         if(instance == null){
             instance = new ReviewTable();
         }
         return instance;
     }
+
+
 }

@@ -62,8 +62,7 @@ public class TagTable implements TagDAO {
     @Override
     public void createTag(Tag tag) {
         String query = "INSERT INTO " + DBConst.TABLE_TAGS +
-                "(" + DBConst.TAGS_COLUMN_NAME + ", " +
-                DBConst.REVIEW_COLUMN_DESC +") VALUES ('" +
+                "(" + DBConst.TAGS_COLUMN_NAME + ") VALUES ('" +
                 tag.getName() + "')";
 
         try {
@@ -77,7 +76,7 @@ public class TagTable implements TagDAO {
     @Override
     public void updateTag(Tag tag) {
         String query = "UPDATE " + DBConst.TABLE_TAGS + " SET " +
-                DBConst.TAGS_COLUMN_NAME + "= " + tag.getName() +
+                DBConst.TAGS_COLUMN_NAME + " = '" + tag.getName() + "' " +
                 " WHERE " + DBConst.TAGS_COLUMN_ID + " = " + tag.getId();
         try {
             Statement updateTag = db.getConnection().createStatement();
