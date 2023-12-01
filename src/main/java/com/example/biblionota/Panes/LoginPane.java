@@ -2,7 +2,6 @@ package com.example.biblionota.Panes;
 
 import com.example.biblionota.HelloApplication;
 import com.example.biblionota.Scenes.HomeScene;
-import javafx.animation.FadeTransition;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -10,14 +9,21 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
-import javafx.util.Duration;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  * This pane provides a login for the user
  * Connects to their database, creates tables
  */
 public class LoginPane extends BorderPane {
-    public LoginPane(){
+    public LoginPane() throws IOException {
         GridPane grid = new GridPane();
 
         //Create background Image
@@ -32,38 +38,47 @@ public class LoginPane extends BorderPane {
         logo.setFitHeight(300);
         logo.setFitWidth(400);
 
+        Text userText = new Text("Username:");
+        Text passwordText = new Text("Password:");
+
+        //Login Fields
+        File fileName = new File("login.txt");
+
         TextField user = new TextField();
         user.setMaxWidth(300);
         TextField password = new TextField();
         password.setMaxWidth(300);
 
-        Text userText = new Text("Username:");
-        Text passwordText = new Text("Password:");
+        //Test Connection Button
+        Button testConection = new Button("Test Connection");
+        grid.add(testConection, 0, 3);
+        testConection.setOnAction(e->{
+            try {
+                String userName = user.getText();
+                String passWord = password.getText();
+                addToFile("login.txt", userName);
+                addToFile("login.txt", passWord);
+
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+
+            
+        });
+
+
+        //Login Button
+        Button loginButton = new Button("Login");
+        grid.add(loginButton, 0,4);
+        loginButton.setOnMouseClicked(e->{
+//            HelloApplication.mainStage.setScene(new HomeScene());
+        });
 
         //Place Items on Page
         grid.add(user,1,1);
         grid.add(password, 1,2);
         grid.add(userText,0,1);
         grid.add(passwordText,0,2);
-
-        Button loginButton = new Button("Login");
-        grid.add(loginButton, 0,3);
-        loginButton.setOnMouseClicked(e->{
-            HelloApplication.mainStage.setScene(new HomeScene());
-        });
-
-//        FadeTransition fade = new FadeTransition(Duration.millis(5000));
-//        fade.setCycleCount(1000);
-//        fade.setFromValue(10);
-//        fade.setToValue(0.1);
-//        fade.setAutoReverse(true);
-
-        loginButton.setOnMouseClicked(e->{
-            HelloApplication.mainStage.setScene(new HomeScene());
-        });
-
-
-
 
         logo.setTranslateX(380);
         logo.setTranslateY(150);
@@ -73,9 +88,14 @@ public class LoginPane extends BorderPane {
         grid.setTranslateX(-48);
         this.setCenter(grid);
 
-
-
     }
 
+    public static void addToFile(String filename, String input) throws IOException{
+        BufferedWriter  add = new BufferedWriter(new BufferedWriter(new FileWriter(filename, true)));
+            add.write(input);
+            add.newLine();
+            add.flush();
+            add.close();
+    }
 
 }
