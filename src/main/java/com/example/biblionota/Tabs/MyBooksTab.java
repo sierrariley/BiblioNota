@@ -17,6 +17,10 @@ public class MyBooksTab extends Tab {
     private static MyBooksTab instance;
 
     public TableView tableview;
+
+    /**
+     * Java Doc comments here
+     */
     private MyBooksTab(){
         this.setText("My Books");
         BorderPane root = new BorderPane();
