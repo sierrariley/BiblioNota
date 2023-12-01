@@ -92,7 +92,7 @@ public class AuthorTable implements AuthorDAO {
         }
     }
 
-    public int getLasId(){
+    public int getLastId(){
         int id = -1;
         try{
             PreparedStatement getId = db.getConnection().prepareStatement("SELECT last_insert_id() as id");

@@ -135,6 +135,12 @@ public class AddBookTab extends Tab {
         Button submitBtn = new Button("Add Book!");
         //This button actions adds all filled out entries into its respective tables
         submitBtn.setOnAction(e ->{
+
+            Review review1 = new Review(
+                    reviewTxtArea.getText(),
+                    Integer.parseInt(String.valueOf(bookRating.getSelectionModel().getSelectedItem())));
+            reviewTable.createReview(review1);
+
             Book book = new Book(
                     bookTxtField.getText(),
                     Integer.parseInt(isbnTxtField.getText()),
@@ -145,28 +151,23 @@ public class AddBookTab extends Tab {
                     ((Format) bookFormatCombo.getSelectionModel().getSelectedItem()).getId(),
                     reviewTable.getLasId());
             bookTable.createBook(book);
+            int bookLastId = bookTable.getLastId();
 
-            Review review1 = new Review(
-                    reviewTxtArea.getText(),
-                    Integer.parseInt(String.valueOf(bookRating.getSelectionModel().getSelectedItem())));
-            reviewTable.createReview(review1);
+
 
             Author author1 = new Author(authorTxtField.getText());
             authorTable.createAuthor(author1);
+            int authorLastId = authorTable.getLastId();
 
             Tag tag1 = new Tag(addTagListView.getItems().toString());
             tagTable.createTag(tag1);
+            int tagLastId = tagTable.getLastId();
 
-            BookTag bookTag = new BookTag(bookTable.getLasId(), tagTable.getLasId());
+            BookTag bookTag = new BookTag(bookLastId, tagLastId);
             bookTagTable.createJunction(bookTag);
 
-
-            //What's the error here
-            BookAuthor bookAuthor = new BookAuthor(bookTable.getLasId(), authorTable.getLasId());
+            BookAuthor bookAuthor = new BookAuthor(bookLastId, authorLastId);
             bookAuthorTable.createJunction(bookAuthor);
-
-
-
             System.out.println("Book Added");
 
             MyBooksTab.getInstance().refreshTable();

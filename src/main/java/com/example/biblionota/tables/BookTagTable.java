@@ -62,7 +62,6 @@ public class BookTagTable implements BookTagDAO {
                 "(" + DBConst.BOOK_TAGS_COLUMN_BOOK + ", " +
                 DBConst.BOOK_TAGS_COLUMN_TAG + ") VALUES ('" +
                 bookTag.getBook_id() + "', '" + bookTag.getTag_id() + "')";
-        System.out.println(query);
         try {
             db.getConnection().createStatement().execute(query);
             System.out.println("Inserted Junction Record");

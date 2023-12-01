@@ -64,7 +64,6 @@ public class BookAuthorTable implements BookAuthorDAO {
                 "(" + DBConst.BOOK_AUTHOR_COLUMN_BOOK + ", " +
                 DBConst.BOOK_AUTHOR_COLUMN_AUTHOR + ") VALUES ('" +
                 bookAuthor.getBook_id() + "', '" + bookAuthor.getAuthor_id() + "')";
-        System.out.println(query);
         try {
             db.getConnection().createStatement().execute(query);
             System.out.println("Inserted Junction Record");
