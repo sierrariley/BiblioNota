@@ -82,9 +82,8 @@ public class MyBooksTab extends Tab {
         column11.setCellValueFactory(e-> new SimpleStringProperty(String.valueOf(e.getValue().getTag_names())));
 
 
-        /**
-         *This allows the book to be deleted from table when button is pressed
-         */
+
+        //This allows the book to be deleted from table when button is pressed
         Button removeBook = new Button("Delete Book");
         removeBook.setOnAction(e -> {
             DisplayBook remove = (DisplayBook) tableview.getSelectionModel().getSelectedItem();

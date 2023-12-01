@@ -246,4 +246,17 @@ public class BookTable implements BookDAO {
         }
         return count;
     }
+
+    public int getLasId(){
+        int id = -1;
+        try{
+            PreparedStatement getId = db.getConnection().prepareStatement("SELECT last_insert_id() as id");
+            ResultSet data = getId.executeQuery();
+            data.next();
+            id = data.getInt("id");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return id;
+    }
 }
