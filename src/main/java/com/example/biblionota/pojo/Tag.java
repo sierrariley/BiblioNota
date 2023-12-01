@@ -1,11 +1,18 @@
 package com.example.biblionota.pojo;
 
+/**
+ * Tag Class
+ */
 public class Tag {
     //private variables
     private int id;
     private String name;
-    //constructor
 
+    /**
+     * Arg Constructor
+     * @param id
+     * @param name
+     */
     public Tag(int id, String name) {
         this.id = id;
         this.name = name;

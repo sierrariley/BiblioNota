@@ -15,7 +15,6 @@ public class Database {
     private static Database instance;
     private Connection connection = null;
 
-
     /**
      * Creates a connection to a Database
      * Will also make tables in Database
@@ -42,7 +41,6 @@ public class Database {
             e.printStackTrace();
         }
     }
-
 
     /**
      * This method will create an instance if one has not been created yet. If so, it will use the instance that has been created
@@ -75,7 +73,6 @@ public class Database {
             createTable.execute(tableQry);
             System.out.println(tableName + " table has been created!");
 
-            //INSERT statements go here.
         }
     }
 

@@ -10,11 +10,16 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+/**
+ * FormatTable Class Implements FormatDAO
+ */
 public class FormatTable implements FormatDAO {
     private static FormatTable instance;
-    Database db;
-    private FormatTable() { db = Database.getInstance(); }
     ArrayList<Format> formats;
+    Database db;
+
+    private FormatTable() { db = Database.getInstance(); }
+
     @Override
     public ArrayList<Format> getAllFormats() {
         String query = "SELECT * FROM " + DBConst.TABLE_FORMAT;

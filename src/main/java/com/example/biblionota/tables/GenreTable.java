@@ -11,11 +11,15 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+/**
+ * GenreTable class implements GenreDAO
+ */
 public class GenreTable implements GenreDAO {
     private static GenreTable instance;
     Database db;
-    private GenreTable() { db = Database.getInstance(); }
     ArrayList<Genre> genres;
+
+    private GenreTable() { db = Database.getInstance(); }
     @Override
     public ArrayList<Genre> getAllGenres() {
         String query = "SELECT * FROM " + DBConst.TABLE_GENRE;

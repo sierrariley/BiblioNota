@@ -1,12 +1,14 @@
 package com.example.biblionota.Tabs;
 
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 
+/**
+ * AddBookTab Class extends Tab
+ */
 public class AddBookTab extends Tab {
 
     private static AddBookTab instance;
@@ -20,8 +22,6 @@ public class AddBookTab extends Tab {
         TextField addBookName = new TextField();
         root.add(bookName, 0, 0);
         root.add(addBookName, 1, 0);
-
-
 
         Text isbn = new Text("ISBN: ");
         TextField fillIsbn = new TextField();
@@ -67,19 +67,7 @@ public class AddBookTab extends Tab {
         root.add(submit, 0, 9);
 
         this.setContent(root);
-
-
-
-
-
-
-
-
     }
-
-
-
-
 
     public static AddBookTab getInstance(){
         if(instance == null){

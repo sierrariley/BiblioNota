@@ -15,24 +15,13 @@ import java.util.ArrayList;
 
 public class GraphTab extends Tab {
     private static GraphTab instance;
-
     private final PieChart pieChart;
-
     private final LineChart<String, Number> lineChart;
     private final BarChart<String, Number> barChart;
-
-    private ScatterChart scatterChart;
-
-
 
     private GraphTab() {
         this.setText("Graphs");
         BorderPane root = new BorderPane();
-
-        //Chart 2
-        pieChart = new PieChart();
-        pieChart.setTitle("Genres");
-        pieChart.setLabelsVisible(true);
 
         //Chart 1
         NumberAxis yAxis = new NumberAxis();
@@ -43,6 +32,11 @@ public class GraphTab extends Tab {
         lineChart.setTitle("Books Read Over Months");
         lineChart.setLegendVisible(false);
 
+        //Chart 2
+        pieChart = new PieChart();
+        pieChart.setTitle("Genres");
+        pieChart.setLabelsVisible(true);
+
         //Chart 3
         NumberAxis yAxisBar = new NumberAxis();
         yAxisBar.setLabel("# of Books Read");
@@ -51,16 +45,13 @@ public class GraphTab extends Tab {
         barChart = new BarChart<>(xAxisBar, yAxisBar);
         barChart.setLegendVisible(false);
 
-
         root.setTop(lineChart);
         root.setLeft(barChart);
         root.setCenter(pieChart);
-//        root.setRight();
 
         generateGenreChart();
         generateBooksPerMonthChart();
         generateStylesReadChart();
-        generateLengthOfBooksChart();
 
         this.setContent(root);
     }
@@ -134,14 +125,6 @@ public class GraphTab extends Tab {
         XYChart.Series<String, Number> series = new XYChart.Series<>(data);
         barChart.getData().add(series);
     }
-
-    //Chart 4 - Average Length of Books
-    public void generateLengthOfBooksChart() {
-
-    }
-
-
-
 
     public static GraphTab getInstance(){
         if (instance == null) {
