@@ -11,11 +11,16 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+/**
+ * ReviewTable Class Implements ReviewDAO
+ */
 public class ReviewTable implements ReviewDAO {
     private static ReviewTable instance;
     Database db;
-    private ReviewTable() { db = Database.getInstance(); }
     ArrayList<Review> reviews;
+
+    private ReviewTable() { db = Database.getInstance(); }
+
     @Override
     public ArrayList<Review> getAllReviews() {
         String query = "SELECT * FROM " + DBConst.TABLE_REVIEW;

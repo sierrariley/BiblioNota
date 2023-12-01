@@ -1,10 +1,18 @@
 package com.example.biblionota.pojo;
 
+/**
+ * Format Class
+ */
 public class Format {
     //private variables
     private int id;
     private String type;
-    //constructor
+
+    /**
+     * Args Constructor
+     * @param id
+     * @param type
+     */
     public Format(int id, String type) {
         this.id = id;
         this.type = type;

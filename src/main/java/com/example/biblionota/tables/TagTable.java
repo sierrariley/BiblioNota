@@ -9,11 +9,16 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+/**
+ * TagTable Class Implements TagDAO
+ */
 public class TagTable implements TagDAO {
     private static TagTable instance;
     Database db;
-    private TagTable() { db = Database.getInstance(); }
     ArrayList<Tag> tags;
+
+    private TagTable() { db = Database.getInstance(); }
+
     @Override
     public ArrayList<Tag> getAllTags() {
         String query = "SELECT * FROM " + DBConst.TABLE_TAGS;

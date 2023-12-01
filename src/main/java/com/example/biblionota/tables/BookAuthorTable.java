@@ -11,11 +11,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class BookAuthorTable implements BookAuthorDAO {
-
     private static BookAuthorTable instance;
     Database db;
-    private BookAuthorTable() { db = Database.getInstance(); }
     ArrayList<BookAuthor> booksAuthors;
+
+    private BookAuthorTable() { db = Database.getInstance(); }
     @Override
     public ArrayList<BookAuthor> getAllBookAuthor() {
         String query = "SELECT * FROM " + DBConst.TABLE_BOOK_AUTHOR;

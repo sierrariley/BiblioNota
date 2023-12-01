@@ -3,6 +3,9 @@ package com.example.biblionota.Panes;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 
+/**
+ * Credits Pane
+ */
 public class CreditsPane extends BorderPane {
 
     public CreditsPane() {

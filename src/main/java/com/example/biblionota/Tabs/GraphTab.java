@@ -15,24 +15,13 @@ import java.util.ArrayList;
 
 public class GraphTab extends Tab {
     private static GraphTab instance;
-
     private final PieChart pieChart;
-
     private final LineChart<String, Number> lineChart;
     private final BarChart<String, Number> barChart;
-
-    private ScatterChart scatterChart;
-
-
 
     private GraphTab() {
         this.setText("Graphs");
         BorderPane root = new BorderPane();
-
-        //Chart 2
-        pieChart = new PieChart();
-        pieChart.setTitle("Genres");
-        pieChart.setLabelsVisible(true);
 
         //Chart 1
         NumberAxis yAxis = new NumberAxis();
@@ -43,6 +32,11 @@ public class GraphTab extends Tab {
         lineChart.setTitle("Books Read Over Months");
         lineChart.setLegendVisible(false);
 
+        //Chart 2
+        pieChart = new PieChart();
+        pieChart.setTitle("Genres");
+        pieChart.setLabelsVisible(true);
+
         //Chart 3
         NumberAxis yAxisBar = new NumberAxis();
         yAxisBar.setLabel("# of Books Read");
@@ -50,7 +44,6 @@ public class GraphTab extends Tab {
         xAxisBar.setLabel("Formats");
         barChart = new BarChart<>(xAxisBar, yAxisBar);
         barChart.setLegendVisible(false);
-
 
         root.setTop(lineChart);
         root.setLeft(barChart);

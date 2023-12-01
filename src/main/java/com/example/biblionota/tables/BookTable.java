@@ -14,11 +14,16 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+/**
+ * BookTable Class Implements BookDAO
+ */
 public class BookTable implements BookDAO {
     private static BookTable instance;
     Database db;
-    private BookTable() { db = Database.getInstance(); }
     ArrayList<Book> books;
+
+    private BookTable() { db = Database.getInstance(); }
+
     @Override
     public ArrayList<Book> getAllBooks() {
         String query = "SELECT * FROM " + DBConst.TABLE_BOOK;
@@ -155,6 +160,10 @@ public class BookTable implements BookDAO {
         return instance;
     }
 
+    /**
+     * Get displayBooks
+     * @return
+     */
     public ArrayList<DisplayBook> getDisplayBooks() {
         ArrayList<DisplayBook> books = new ArrayList<>();
         String query = """
@@ -207,6 +216,12 @@ public class BookTable implements BookDAO {
         return books;
     }
 
+    /**
+     * Get genre count
+     * used for creating graphs
+     * @param book
+     * @return
+     */
     public int getGenreCount(int book) {
         int count = -1;
         try {
@@ -226,6 +241,11 @@ public class BookTable implements BookDAO {
         return count;
     }
 
+    /**
+     * Get formatCount used for creating graphs
+     * @param book
+     * @return
+     */
     public int getFormatCount(int book) {
         int count = -1;
 
@@ -246,6 +266,10 @@ public class BookTable implements BookDAO {
         return count;
     }
 
+    /**
+     * Unused
+     * @return
+     */
     public int[] getPageCounts() {
         int[] pageCounts = {};
 

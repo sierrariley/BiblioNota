@@ -6,6 +6,9 @@ import com.example.biblionota.Panes.HomePage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
+/**
+ * CreditsScene
+ */
 public class CreditsScene extends Scene {
     public CreditsScene() {
         super(new CreditsPane(), Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
