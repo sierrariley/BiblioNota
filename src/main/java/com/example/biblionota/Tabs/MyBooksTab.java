@@ -80,7 +80,7 @@ public class MyBooksTab extends Tab {
         //tags
         TableColumn<DisplayBook, String> column11 = new TableColumn<>("Tags");
         column11.setCellValueFactory(e-> new SimpleStringProperty(String.valueOf(e.getValue().getTag_names())));
-        //TODO: allow user to create new tag and select multiple tags
+
 
         /**
          *This allows the book to be deleted from table when button is pressed

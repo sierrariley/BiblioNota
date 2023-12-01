@@ -157,8 +157,7 @@ public class AddBookTab extends Tab {
                     Integer.parseInt(String.valueOf(bookRating.getSelectionModel().getSelectedItem())));
             reviewTable.createReview(review1);
 
-           LocalDate finished =  dateFinished.getValue();
-           LocalDate started = dateStarted.getValue();
+
             Book book = new Book(
                     addBookName.getText(),
                     Integer.parseInt(fillIsbn.getText()),
