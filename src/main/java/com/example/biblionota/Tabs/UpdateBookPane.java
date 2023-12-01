@@ -60,6 +60,7 @@ public class UpdateBookPane extends GridPane {
         if(book.getReview() != 0){
           for(Review bookReview: reviewArrayList){
               review.setText(bookReview.getDescription());
+              System.out.println(bookReview.getDescription());
               break;
           }
         }
@@ -74,9 +75,14 @@ public class UpdateBookPane extends GridPane {
 
         Button update = new Button("Update Book!");
         update.setOnAction(e->{
-            Review updatedReview = new Review(review.getText(), Integer.parseInt(String.valueOf(starRating.getSelectionModel().getSelectedItem())));
+            Review oldReview = reviewTable.getReview(book.getId());
+            Review updatedReview = new Review(review.getText(), oldReview.getStar_rating(), oldReview.getId());
             reviewTable.updateReview(updatedReview);
-            book.setReview(Integer.parseInt(review.getText()));
+
+
+//            Review updateStar = new Review(book.getReview(), String.valueOf(((Review)(starRating.getSelectionModel().getSelectedItem()))), oldReview.getId());
+//            reviewTable.updateStarRating(updateStar);
+
             Tag tag1 = new Tag(tags.getItems().toString());
             tagTable.updateTag(tag1);
 

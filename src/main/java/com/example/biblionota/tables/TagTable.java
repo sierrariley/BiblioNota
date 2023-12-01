@@ -71,7 +71,7 @@ public class TagTable implements TagDAO {
     @Override
     public void updateTag(Tag tag) {
         String query = "UPDATE " + DBConst.TABLE_TAGS + " SET " +
-                DBConst.TAGS_COLUMN_NAME + "= " + tag.getName() +
+                DBConst.TAGS_COLUMN_NAME + " = '" + tag.getName() + "' " +
                 " WHERE " + DBConst.TAGS_COLUMN_ID + " = " + tag.getId();
         try {
             Statement updateTag = db.getConnection().createStatement();
