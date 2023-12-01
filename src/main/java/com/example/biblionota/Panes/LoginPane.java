@@ -28,9 +28,10 @@ public class LoginPane extends BorderPane {
 
         //Create background Image
         Image background = new Image("images/background3.png");
+
         ImageView imageView = new ImageView(background);
         imageView.setPreserveRatio(true);
-        BackgroundSize size = new BackgroundSize(1200,800,true,true,true, false);
+        BackgroundSize size = new BackgroundSize(1200, 800, true, true, true, false);
         this.setBackground(new Background(new BackgroundImage(background, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, size)));
 
         //Logo image
@@ -38,21 +39,24 @@ public class LoginPane extends BorderPane {
         logo.setFitHeight(300);
         logo.setFitWidth(400);
 
+
         Text userText = new Text("Username:");
         Text passwordText = new Text("Password:");
 
         //Login Fields
         File fileName = new File("login.txt");
 
+
         TextField user = new TextField();
         user.setMaxWidth(300);
+        //password
         TextField password = new TextField();
         password.setMaxWidth(300);
 
         //Test Connection Button
         Button testConection = new Button("Test Connection");
         grid.add(testConection, 0, 3);
-        testConection.setOnAction(e->{
+        testConection.setOnAction(e -> {
             try {
                 String userName = user.getText();
                 String passWord = password.getText();
@@ -63,22 +67,22 @@ public class LoginPane extends BorderPane {
                 ex.printStackTrace();
             }
 
-            
+
         });
 
 
         //Login Button
         Button loginButton = new Button("Login");
-        grid.add(loginButton, 0,4);
-        loginButton.setOnMouseClicked(e->{
+        grid.add(loginButton, 0, 4);
+        loginButton.setOnMouseClicked(e -> {
 //            HelloApplication.mainStage.setScene(new HomeScene());
         });
 
         //Place Items on Page
-        grid.add(user,1,1);
-        grid.add(password, 1,2);
-        grid.add(userText,0,1);
-        grid.add(passwordText,0,2);
+        grid.add(user, 1, 1);
+        grid.add(password, 1, 2);
+        grid.add(userText, 0, 1);
+        grid.add(passwordText, 0, 2);
 
         logo.setTranslateX(380);
         logo.setTranslateY(150);
@@ -90,12 +94,14 @@ public class LoginPane extends BorderPane {
 
     }
 
-    public static void addToFile(String filename, String input) throws IOException{
-        BufferedWriter  add = new BufferedWriter(new BufferedWriter(new FileWriter(filename, true)));
-            add.write(input);
-            add.newLine();
-            add.flush();
-            add.close();
+    public static void addToFile(String filename, String input) throws IOException {
+        BufferedWriter add = new BufferedWriter(new BufferedWriter(new FileWriter(filename, true)));
+        add.write(input);
+        add.newLine();
+        add.flush();
+        add.close();
     }
 
 }
+
+
