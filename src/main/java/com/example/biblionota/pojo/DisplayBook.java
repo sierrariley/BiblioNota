@@ -15,9 +15,8 @@ public class DisplayBook {
     private String review_description;
     private int review_star_rating;
     private String author_names;
-    private String[] tag_names;
+    private String tag_names;
 
-<<<<<<< HEAD
     /**
      * Args Constructor
      * @param id
@@ -34,9 +33,6 @@ public class DisplayBook {
      * @param tag_names
      */
     public DisplayBook(int id, String name, int isbn, int pages, String date_started, String date_finished, String genre_name, String format_name, String review_description, int review_star_rating, String author_names, String tag_names) {
-=======
-    public DisplayBook(int id, String name, int isbn, int pages, String date_started, String date_finished, String genre_name, String format_name, String review_description, int review_star_rating, String author_names, String[] tag_names) {
->>>>>>> addBookTab
         this.id = id;
         this.name = name;
         this.isbn = isbn;
@@ -146,15 +142,13 @@ public class DisplayBook {
      */
     public String getTag_names() {
         if (tag_names != null) {
-            for (String tag: tag_names) {
-                return tag + "\n";
-            }
+            return tag_names;
         }
         return " ";
 
     }
 
-    public void setTag_names(String[] tag_names) {
+    public void setTag_names(String tag_names) {
         this.tag_names = tag_names;
     }
 }

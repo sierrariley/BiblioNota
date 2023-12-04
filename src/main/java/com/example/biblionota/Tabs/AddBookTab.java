@@ -1,11 +1,5 @@
 package com.example.biblionota.Tabs;
 
-<<<<<<< HEAD
-import com.example.biblionota.database.DBConst;
-import com.example.biblionota.database.Database;
-=======
-
->>>>>>> addBookTab
 import com.example.biblionota.pojo.*;
 import com.example.biblionota.tables.*;
 import javafx.collections.FXCollections;
@@ -14,16 +8,6 @@ import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
-
-<<<<<<< HEAD
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Locale;
-=======
->>>>>>> addBookTab
 
 public class AddBookTab extends Tab {
 
