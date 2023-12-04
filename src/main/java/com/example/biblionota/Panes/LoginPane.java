@@ -53,21 +53,17 @@ public class LoginPane extends BorderPane {
         password.setMaxWidth(300);
 
         //Test Connection Button
-        Button testConection = new Button("Test Connection");
+        Button testConection = new Button("Add Credentials");
         testConection.setOnAction(e -> {
             try {
                 String userName = user.getText();
                 String passWord = password.getText();
-                String java = name.getText();
-//                addToFile("login.txt", java);
                 addToFile("login.txt", userName);
                 addToFile("login.txt", passWord);
 
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-
-
         });
 
         //Login Button
@@ -97,7 +93,6 @@ public class LoginPane extends BorderPane {
     }
 
     public static void addToFile(String filename, String input) throws IOException {
-//        BufferedWriter add = new BufferedWriter(new BufferedWriter(new FileWriter(filename, true)));
         FileOutputStream add = new FileOutputStream(filename, true);
         PrintWriter printWriter = new PrintWriter(add);
         printWriter.println(input);
