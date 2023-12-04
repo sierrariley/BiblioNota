@@ -38,6 +38,19 @@ public class Book {
         this.format = format;
         this.review = review;
     }
+    //constructor without id
+    public Book(String name, int isbn, int pages, String date_started, String date_finished, int genre, int format, int review) {
+        this.name = name;
+        this.isbn = isbn;
+        this.pages = pages;
+        this.date_started = date_started;
+        this.date_finished = date_finished;
+        this.genre = genre;
+        this.format = format;
+        this.review = review;
+    }
+
+
 
     //getters and setters
     public int getId() {
