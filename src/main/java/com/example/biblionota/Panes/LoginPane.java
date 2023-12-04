@@ -40,13 +40,15 @@ public class LoginPane extends BorderPane {
         logo.setFitWidth(400);
 
 
+        Text dbName = new Text("Database Name:");
         Text userText = new Text("Username:");
         Text passwordText = new Text("Password:");
 
         //Login Fields
         File fileName = new File("login.txt");
 
-
+        TextField name = new TextField();
+        name.setMaxWidth(300);
         TextField user = new TextField();
         user.setMaxWidth(300);
         //password
@@ -55,11 +57,12 @@ public class LoginPane extends BorderPane {
 
         //Test Connection Button
         Button testConection = new Button("Test Connection");
-        grid.add(testConection, 0, 3);
         testConection.setOnAction(e -> {
             try {
                 String userName = user.getText();
                 String passWord = password.getText();
+                String java = name.getText();
+                addToFile("login.txt", java);
                 addToFile("login.txt", userName);
                 addToFile("login.txt", passWord);
 
@@ -70,19 +73,21 @@ public class LoginPane extends BorderPane {
 
         });
 
-
         //Login Button
         Button loginButton = new Button("Login");
-        grid.add(loginButton, 0, 4);
         loginButton.setOnMouseClicked(e -> {
-//            HelloApplication.mainStage.setScene(new HomeScene());
+            HelloApplication.mainStage.setScene(new HomeScene());
         });
 
         //Place Items on Page
-        grid.add(user, 1, 1);
-        grid.add(password, 1, 2);
-        grid.add(userText, 0, 1);
-        grid.add(passwordText, 0, 2);
+        grid.add(dbName, 0,1);
+        grid.add(userText, 0, 2);
+        grid.add(passwordText, 0, 3);
+        grid.add(name, 1,1);
+        grid.add(user, 1, 2);
+        grid.add(password, 1, 3);
+        grid.add(testConection, 0, 4);
+        grid.add(loginButton, 0, 5);
 
         logo.setTranslateX(380);
         logo.setTranslateY(150);

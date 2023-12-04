@@ -1,4 +1,8 @@
 package com.example.biblionota.database;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.*;
 
 import static com.example.biblionota.database.Const.*;
@@ -20,6 +24,11 @@ public class Database {
      * Will also make tables in Database
      */
     private Database(){
+        String[] dbcreds = credentials();
+        String DB_NAME = dbcreds[0];
+        String DB_USER = dbcreds[1];
+        String DB_PASS = dbcreds[2];
+
         try{
         Class.forName("com.mysql.cj.jdbc.Driver");
         //Fix this next line - base it off of login
@@ -63,9 +72,13 @@ public class Database {
     private void createTable(String tableName, String tableQry, Connection connection) throws SQLException{
         Statement createTable;
         DatabaseMetaData metaData = connection.getMetaData();
+        String[] dbcreds = credentials();
+        String DB_NAME = dbcreds[0];
+        String DB_USER = dbcreds[1];
+        String DB_PASS = dbcreds[2];
 
         //look in database for table that matches tableName param
-        ResultSet resultSet = metaData.getTables("slawrencejava", null, tableName, null);
+        ResultSet resultSet = metaData.getTables(DB_NAME, null, tableName, null);
         if(resultSet.next()){
             System.out.println(tableName + " table already exists");
         }else{
