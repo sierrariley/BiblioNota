@@ -266,7 +266,7 @@ public class BookTable implements BookDAO {
         return count;
     }
 
-<<<<<<< HEAD
+
     /**
      * Unused
      * @return
@@ -285,7 +285,7 @@ public class BookTable implements BookDAO {
         }
 
         return pageCounts;
-=======
+    }
     public int getLastId(){
         int id = -1;
         try{
@@ -297,6 +297,6 @@ public class BookTable implements BookDAO {
             throw new RuntimeException(e);
         }
         return id;
->>>>>>> addBookTab
+
     }
 }
