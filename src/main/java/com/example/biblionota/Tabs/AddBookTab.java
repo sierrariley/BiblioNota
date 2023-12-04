@@ -40,7 +40,6 @@ public class AddBookTab extends Tab {
         //ISBN
         Text isbnTxt = new Text("ISBN: ");
         TextField isbnTxtField = new TextField();
-        int ISBN = Integer.parseInt(isbnTxtField.getText());
         root.add(isbnTxt, 0, 1);
         root.add(isbnTxtField, 1, 1);
 
@@ -148,7 +147,7 @@ public class AddBookTab extends Tab {
 
             Book book = new Book(
                     bookTxtField.getText(),
-                    ISBN,
+                    Integer.parseInt(isbnTxtField.getText()),
                     Integer.parseInt(pagesTxtField.getText()),
                     dateStartedPicker.getValue().toString(),
                     dateFinishedPicker.getValue().toString(),
