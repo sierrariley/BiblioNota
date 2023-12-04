@@ -17,6 +17,7 @@ import java.nio.file.Paths;
 
 /**
  * This pane provides a login for the user
+ * Saves their credentials to a file
  * Connects to their database, creates tables
  */
 public class LoginPane extends BorderPane {
@@ -25,7 +26,6 @@ public class LoginPane extends BorderPane {
 
         //Create background Image
         Image background = new Image("images/background3.png");
-
         ImageView imageView = new ImageView(background);
         imageView.setPreserveRatio(true);
         BackgroundSize size = new BackgroundSize(1200, 800, true, true, true, false);
@@ -36,19 +36,13 @@ public class LoginPane extends BorderPane {
         logo.setFitHeight(300);
         logo.setFitWidth(400);
 
-
-        Text dbName = new Text("Database Name:");
+        //Login Fields
         Text userText = new Text("Username:");
         Text passwordText = new Text("Password:");
-
-        //Login Fields
-        File fileName = new File("login.txt");
-
         TextField name = new TextField();
         name.setMaxWidth(300);
         TextField user = new TextField();
         user.setMaxWidth(300);
-        //password
         TextField password = new TextField();
         password.setMaxWidth(300);
 
@@ -73,10 +67,8 @@ public class LoginPane extends BorderPane {
         });
 
         //Place Items on Page
-//        grid.add(dbName, 0,1);
         grid.add(userText, 0, 2);
         grid.add(passwordText, 0, 3);
-//        grid.add(name, 1,1);
         grid.add(user, 1, 2);
         grid.add(password, 1, 3);
         grid.add(testConection, 0, 4);
@@ -92,6 +84,12 @@ public class LoginPane extends BorderPane {
 
     }
 
+    /**
+     *
+     * @param filename
+     * @param input
+     * @throws IOException
+     */
     public static void addToFile(String filename, String input) throws IOException {
         FileOutputStream add = new FileOutputStream(filename, true);
         PrintWriter printWriter = new PrintWriter(add);
