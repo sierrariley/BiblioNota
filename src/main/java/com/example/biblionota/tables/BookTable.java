@@ -207,7 +207,7 @@ public class BookTable implements BookDAO {
                         data.getString("review_description"),
                         data.getInt("review_star_rating"),
                         data.getString("author_names"),
-                        data.getString("tag_names")
+                        new String[]{data.getString("tag_names")}
                 ));
             }
         } catch (Exception e) {
@@ -266,6 +266,7 @@ public class BookTable implements BookDAO {
         return count;
     }
 
+<<<<<<< HEAD
     /**
      * Unused
      * @return
@@ -284,5 +285,18 @@ public class BookTable implements BookDAO {
         }
 
         return pageCounts;
+=======
+    public int getLastId(){
+        int id = -1;
+        try{
+            PreparedStatement getId = db.getConnection().prepareStatement("SELECT last_insert_id() as id");
+            ResultSet data = getId.executeQuery();
+            data.next();
+            id = data.getInt("id");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return id;
+>>>>>>> addBookTab
     }
 }

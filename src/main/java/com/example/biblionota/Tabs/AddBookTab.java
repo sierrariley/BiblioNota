@@ -1,7 +1,11 @@
 package com.example.biblionota.Tabs;
 
+<<<<<<< HEAD
 import com.example.biblionota.database.DBConst;
 import com.example.biblionota.database.Database;
+=======
+
+>>>>>>> addBookTab
 import com.example.biblionota.pojo.*;
 import com.example.biblionota.tables.*;
 import javafx.collections.FXCollections;
@@ -11,12 +15,15 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 
+<<<<<<< HEAD
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Locale;
+=======
+>>>>>>> addBookTab
 
 public class AddBookTab extends Tab {
 
@@ -26,171 +33,166 @@ public class AddBookTab extends Tab {
         this.setText("Add Book");
         GridPane root = new GridPane();
         BorderPane pane = new BorderPane();
+
         ObservableList<Integer> rating = FXCollections.observableArrayList(1, 2, 3, 4, 5);
+
         TagTable tagTable = TagTable.getInstance();
         BookTable bookTable = BookTable.getInstance();
         AuthorTable authorTable = AuthorTable.getInstance();
         ReviewTable reviewTable = ReviewTable.getInstance();
         GenreTable genreTable = GenreTable.getInstance();
         FormatTable formatTable = FormatTable.getInstance();
+        BookTagTable bookTagTable = BookTagTable.getInstance();
+        BookAuthorTable bookAuthorTable = BookAuthorTable.getInstance();
+
+        Text bookTxt = new Text("Book Title: ");
+        TextField bookTxtField = new TextField("Book name");
+        root.add(bookTxt, 0, 0);
+        root.add(bookTxtField, 1, 0);
+
+        Text isbnTxt = new Text("ISBN: ");
+        TextField isbnTxtField = new TextField("136932506");
+        root.add(isbnTxt, 0, 1);
+        root.add(isbnTxtField, 1, 1);
+
+        Text pagesTxt = new Text("Pages:");
+        TextField pagesTxtField = new TextField("100");
+        root.add(pagesTxt, 0, 2);
+        root.add(pagesTxtField, 1,2);
+
+        Label startDateLbl = new Label("Date Started: ");
+        DatePicker dateStartedPicker = new DatePicker();
+        root.add(startDateLbl, 0, 3);
+        root.add(dateStartedPicker, 1, 3);
 
 
-        Text bookName = new Text("Book Title: ");
-        TextField addBookName = new TextField("Book name");
-        root.add(bookName, 0, 0);
-        root.add(addBookName, 1, 0);
+        Label finishDateLbl = new Label("Date Finished: ");
+        DatePicker dateFinishedPicker = new DatePicker();
+        root.add(finishDateLbl, 0, 4);
+        root.add(dateFinishedPicker, 1, 4);
 
-        Text isbn = new Text("ISBN: ");
-        TextField fillIsbn = new TextField("136932506");
-        root.add(isbn, 0, 1);
-        root.add(fillIsbn, 1, 1);
+        Label genreLbl = new Label("Genre: ");
+        ComboBox<Genre> addGenreCombo = new ComboBox<>();
+        addGenreCombo.setItems(FXCollections.observableArrayList(genreTable.getAllGenres().get(1)));
+        root.add(genreLbl, 0, 5);
+        root.add(addGenreCombo, 1, 5);
 
-        Text pages = new Text("Pages:");
-        TextField numPages = new TextField("100");
-        root.add(pages, 0, 2);
-        root.add(numPages, 1,2);
+        Text formatTxt = new Text("Format");
+        ComboBox bookFormatCombo = new ComboBox(FXCollections.observableArrayList(formatTable.getAllFormats().get(1)));
+        root.add(formatTxt, 0, 6);
+        root.add(bookFormatCombo, 1, 6);
 
-        Label startDate = new Label("Date Started: ");
-        DatePicker dateStarted = new DatePicker();
-        root.add(startDate, 0, 3);
-        root.add(dateStarted, 1, 3);
+        Label reviewLbl = new Label("Review: ");
+        TextArea reviewTxtArea = new TextArea("This is a review");
+        root.add(reviewLbl, 0, 7);
+        root.add(reviewTxtArea, 1, 7);
 
-        Label finishDate = new Label("Date Finished: ");
-        DatePicker dateFinished = new DatePicker();
-        root.add(finishDate, 0, 4);
-        root.add(dateFinished, 1, 4);
-
-        Label genre = new Label("Genre: ");
-//        TextField addGenre = new TextField();
-        ComboBox<Genre> addGenre = new ComboBox<>();
-        addGenre.setItems(FXCollections.observableArrayList(genreTable.getAllGenres().get(1)));
-        root.add(genre, 0, 5);
-        root.add(addGenre, 1, 5);
-
-        Text format = new Text("Format");
-        ComboBox bookFormat = new ComboBox(FXCollections.observableArrayList(formatTable.getAllFormats().get(1)));
-        root.add(format, 0, 6);
-        root.add(bookFormat, 1, 6);
-
-
-        Label review = new Label("Review: ");
-        TextArea addReview = new TextArea("This is a review");
-        root.add(review, 0, 7);
-        root.add(addReview, 1, 7);
-
-        Label starRating = new Label("Star Rating (1-5): ");
+        Label starRatingLbl = new Label("Star Rating (1-5): ");
         ComboBox bookRating = new ComboBox(rating);
-        root.add(starRating, 0, 8);
+        root.add(starRatingLbl, 0, 8);
         root.add(bookRating, 1, 8);
 
-        Label author = new Label("Author: ");
-        TextField addAuthor = new TextField("Author name");
-        root.add(author, 0, 9);
-        root.add(addAuthor, 1, 9);
+        Label authorLbl = new Label("Author: ");
+        TextField authorTxtField = new TextField("Author name");
+        root.add(authorLbl, 0, 9);
+        root.add(authorTxtField, 1, 9);
 
 
-        /**
-         * Using Listview that holds all the created tags to populate an empty listview that will add the tags to the new book
-         * Created a transfer and remove tag button to toggle between the two views
-         */
-        Label tag = new Label("Tag: ");
-        final ListView<Tag> tagName = new ListView<>(FXCollections.observableArrayList(tagTable.getAllTags()));
-        final ListView<Tag> addTag = new ListView<>();
-        tagName.prefWidth(100);
-        root.add(tag, 0, 10);
-        root.add(addTag, 1,10);
-        pane.setRight(tagName);
+        //Using Listview that holds all the created tags to populate an empty listview that will add the tags to the new book
+        //Created a transfer and remove tag button to toggle between the two views
+        Label tagLabel = new Label("Tag: ");
+        final ListView<Tag> tagNames = new ListView<>(FXCollections.observableArrayList(tagTable.getAllTags()));
+        final ListView<Tag> addTagListView = new ListView<>();
+        tagNames.prefWidth(100);
+        root.add(tagLabel, 0, 10);
+        root.add(addTagListView, 1,10);
+        pane.setRight(tagNames);
 
         Button transfer = new Button("<");
-        transfer.setOnAction(e ->{
-            ObservableList<Tag> selectedTag = tagName.getSelectionModel().getSelectedItems();
+        transfer.setOnAction(e->{
+            ObservableList<Tag> selectedTag = tagNames.getSelectionModel().getSelectedItems();
             if(!selectedTag.isEmpty()){
-                addTag.getItems().addAll(selectedTag);
+                addTagListView.getItems().addAll(selectedTag);
                 //Remove selected tag from list
-                tagName.getItems().removeAll(selectedTag);
+                tagNames.getItems().removeAll(selectedTag);
             }
-
         });
+
         Button returnTag = new Button(">");
-        returnTag.setOnAction(e ->{
-            ObservableList<Tag> selectedTag = addTag.getSelectionModel().getSelectedItems();
+        returnTag.setOnAction(e->{
+            ObservableList<Tag> selectedTag = addTagListView.getSelectionModel().getSelectedItems();
            if(!selectedTag.isEmpty()){
-               tagName.getItems().addAll(selectedTag);
+               tagNames.getItems().addAll(selectedTag);
                //repopulate selected tag into original list
-               addTag.getItems().removeAll(selectedTag);
+               addTagListView.getItems().removeAll(selectedTag);
            }
-
         });
+
         root.add(returnTag, 20, 10);
         root.add(transfer, 19, 10);
-        Label addNewTag = new Label("Create Tag");
-        TextField newTag = new TextField();
-        root.add(addNewTag, 0, 11);
-        root.add(newTag, 1,11);
+        Label addNewTagLbl = new Label("Create Tag");
+        TextField newTagTxtField = new TextField();
+        root.add(addNewTagLbl, 0, 11);
+        root.add(newTagTxtField, 1,11);
 
-        /**
-         * Allows user to input a new tag name and populate it in the addTag list.
-         * It will be added to the tagTable when book is created
-         */
-        Button createTag = new Button("Add Tag ^");
-        createTag.setOnAction(e ->{
-            Tag newTagName = new Tag(newTag.getText());
-            if(newTag != null){
-            addTag.getItems().add(newTagName);
-
-            newTag.clear();
+        //Allows user to input a new tag name and populate it in the addTag list.
+        //It will be added to the tagTable when book is created
+        Button createTagBtn = new Button("Add Tag ^");
+        createTagBtn.setOnAction(e ->{
+            Tag newTagName = new Tag(newTagTxtField.getText());
+            if(newTagTxtField != null){
+                addTagListView.getItems().add(newTagName);
+                newTagTxtField.clear();
             }
         });
-        root.add(createTag, 2,11);
+        root.add(createTagBtn, 2,11);
 
+        Button submitBtn = new Button("Add Book!");
+        //This button actions adds all filled out entries into its respective tables
+        submitBtn.setOnAction(e ->{
 
-        /**
-         * This button actions adds all filled out entries into its respective tables
-         */
-        Button submit = new Button("Add Book!");
+            Review review1 = new Review(
+                    reviewTxtArea.getText(),
 
-        submit.setOnAction(e ->{
-
-            Review review1 = new Review(addReview.getText(),
                     Integer.parseInt(String.valueOf(bookRating.getSelectionModel().getSelectedItem())));
             reviewTable.createReview(review1);
 
-
             Book book = new Book(
-                    addBookName.getText(),
-                    Integer.parseInt(fillIsbn.getText()),
-                    Integer.parseInt(numPages.getText()),
-                    dateStarted.getValue().toString(),
-                    dateFinished.getValue().toString(),
-                    addGenre.getSelectionModel().getSelectedItem().getId(),
-                    ((Format) bookFormat.getSelectionModel().getSelectedItem()).getId(),
-                    reviewTable.getLasId());
-
-/**
- * In the submit button
- * grab the review and insert a review into the review table
- * use last_insert_id to grab the id of that review
- * insert book and use review id
- */
+                    bookTxtField.getText(),
+                    Integer.parseInt(isbnTxtField.getText()),
+                    Integer.parseInt(pagesTxtField.getText()),
+                    dateStartedPicker.getValue().toString(),
+                    dateFinishedPicker.getValue().toString(),
+                    addGenreCombo.getSelectionModel().getSelectedItem().getId(),
+                    ((Format) bookFormatCombo.getSelectionModel().getSelectedItem()).getId(),
+                    reviewTable.getLastId());
             bookTable.createBook(book);
-            Author author1 = new Author(addAuthor.getText());
+            int bookLastId = bookTable.getLastId();
+
+            Author author1 = new Author(authorTxtField.getText());
             authorTable.createAuthor(author1);
-            Tag tag1 = new Tag(addTag.getItems().toString());
+            int authorLastId = authorTable.getLastId();
+
+            Tag tag1 = new Tag(addTagListView.getItems().toString());
             tagTable.createTag(tag1);
-            System.out.println(tag1);
-            System.out.println("Book added");
+            int tagLastId = tagTable.getLastId();
+
+            BookTag bookTag = new BookTag(bookLastId, tagLastId);
+            bookTagTable.createJunction(bookTag);
+
+            BookAuthor bookAuthor = new BookAuthor(bookLastId, authorLastId);
+            bookAuthorTable.createJunction(bookAuthor);
+            System.out.println("Book Added");
 
             MyBooksTab.getInstance().refreshTable();
-
-
         });
-        root.add(submit, 0, 12);
+        root.add(submitBtn, 0, 12);
 
         pane.setCenter(root);
         this.setContent(pane);
-
-
     }
+
+
 
 
 
@@ -200,7 +202,4 @@ public class AddBookTab extends Tab {
         }
         return instance;
     }
-
-
-
 }

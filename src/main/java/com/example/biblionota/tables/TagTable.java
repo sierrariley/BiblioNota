@@ -4,6 +4,8 @@ import com.example.biblionota.dao.TagDAO;
 import com.example.biblionota.database.DBConst;
 import com.example.biblionota.database.Database;
 import com.example.biblionota.pojo.Tag;
+
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -104,5 +106,18 @@ public class TagTable implements TagDAO {
             instance = new TagTable();
         }
         return instance;
+    }
+
+    public int getLastId(){
+        int id = -1;
+        try{
+            PreparedStatement getId = db.getConnection().prepareStatement("SELECT last_insert_id()  as id");
+            ResultSet data = getId.executeQuery();
+            data.next();
+            id = data.getInt("id");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return id;
     }
 }

@@ -61,6 +61,19 @@ public class BookTagTable implements BookTagDAO {
         return null;
     }
 
+    public void createJunction(BookTag bookTag) {
+        String query = "INSERT INTO " + DBConst.TABLE_BOOK_TAGS +
+                "(" + DBConst.BOOK_TAGS_COLUMN_BOOK + ", " +
+                DBConst.BOOK_TAGS_COLUMN_TAG + ") VALUES ('" +
+                bookTag.getBook_id() + "', '" + bookTag.getTag_id() + "')";
+        try {
+            db.getConnection().createStatement().execute(query);
+            System.out.println("Inserted Junction Record");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public static BookTagTable getInstance() {
         if(instance == null){
             instance = new BookTagTable();

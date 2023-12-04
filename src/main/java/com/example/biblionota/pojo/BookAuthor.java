@@ -21,6 +21,11 @@ public class BookAuthor {
         this.author_id = tag_id;
     }
 
+    public BookAuthor(int book_id, int tag_id) {
+        this.book_id = book_id;
+        this.author_id = tag_id;
+    }
+
     //getters and setters
     public int getId() {
         return id;
