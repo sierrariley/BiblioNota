@@ -25,9 +25,9 @@ public class Database {
      */
     private Database(){
         String[] dbcreds = credentials();
-        String DB_NAME = dbcreds[0];
-        String DB_USER = dbcreds[1];
-        String DB_PASS = dbcreds[2];
+        String DB_NAME = dbcreds[0] + "java";
+        String DB_USER = dbcreds[0];
+        String DB_PASS = dbcreds[1];
 
         try{
         Class.forName("com.mysql.cj.jdbc.Driver");
@@ -73,9 +73,8 @@ public class Database {
         Statement createTable;
         DatabaseMetaData metaData = connection.getMetaData();
         String[] dbcreds = credentials();
-        String DB_NAME = dbcreds[0];
-        String DB_USER = dbcreds[1];
-        String DB_PASS = dbcreds[2];
+        String DB_NAME = dbcreds[0] + "java";
+
 
         //look in database for table that matches tableName param
         ResultSet resultSet = metaData.getTables(DB_NAME, null, tableName, null);

@@ -10,10 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -62,7 +59,7 @@ public class LoginPane extends BorderPane {
                 String userName = user.getText();
                 String passWord = password.getText();
                 String java = name.getText();
-                addToFile("login.txt", java);
+//                addToFile("login.txt", java);
                 addToFile("login.txt", userName);
                 addToFile("login.txt", passWord);
 
@@ -80,10 +77,10 @@ public class LoginPane extends BorderPane {
         });
 
         //Place Items on Page
-        grid.add(dbName, 0,1);
+//        grid.add(dbName, 0,1);
         grid.add(userText, 0, 2);
         grid.add(passwordText, 0, 3);
-        grid.add(name, 1,1);
+//        grid.add(name, 1,1);
         grid.add(user, 1, 2);
         grid.add(password, 1, 3);
         grid.add(testConection, 0, 4);
@@ -100,11 +97,12 @@ public class LoginPane extends BorderPane {
     }
 
     public static void addToFile(String filename, String input) throws IOException {
-        BufferedWriter add = new BufferedWriter(new BufferedWriter(new FileWriter(filename, true)));
-        add.write(input);
-        add.newLine();
-        add.flush();
-        add.close();
+//        BufferedWriter add = new BufferedWriter(new BufferedWriter(new FileWriter(filename, true)));
+        FileOutputStream add = new FileOutputStream(filename, true);
+        PrintWriter printWriter = new PrintWriter(add);
+        printWriter.println(input);
+        printWriter.flush();
+        printWriter.close();
     }
 
 }
