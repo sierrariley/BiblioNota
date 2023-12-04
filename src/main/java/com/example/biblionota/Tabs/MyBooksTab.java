@@ -18,6 +18,7 @@ public class MyBooksTab extends Tab {
      * Java Doc comments here
      */
     private MyBooksTab(){
+
         this.setText("My Books");
         BorderPane root = new BorderPane();
         BookTable book = BookTable.getInstance();
