@@ -34,17 +34,17 @@ public class AddBookTab extends Tab {
         BookAuthorTable bookAuthorTable = BookAuthorTable.getInstance();
 
         Text bookTxt = new Text("Book Title: ");
-        TextField bookTxtField = new TextField("Book name");
+        TextField bookTxtField = new TextField();
         root.add(bookTxt, 0, 0);
         root.add(bookTxtField, 1, 0);
 
         Text isbnTxt = new Text("ISBN: ");
-        TextField isbnTxtField = new TextField("136932506");
+        TextField isbnTxtField = new TextField();
         root.add(isbnTxt, 0, 1);
         root.add(isbnTxtField, 1, 1);
 
         Text pagesTxt = new Text("Pages:");
-        TextField pagesTxtField = new TextField("100");
+        TextField pagesTxtField = new TextField();
         root.add(pagesTxt, 0, 2);
         root.add(pagesTxtField, 1,2);
 
@@ -61,22 +61,22 @@ public class AddBookTab extends Tab {
 
         Label genreLbl = new Label("Genre: ");
         ComboBox<Genre> addGenreCombo = new ComboBox<>();
-        addGenreCombo.setItems(FXCollections.observableArrayList(genreTable.getAllGenres().get(1)));
+        addGenreCombo.setItems(FXCollections.observableArrayList(genreTable.getAllGenres()));
         root.add(genreLbl, 0, 5);
         root.add(addGenreCombo, 1, 5);
 
         Text formatTxt = new Text("Format");
-        ComboBox bookFormatCombo = new ComboBox(FXCollections.observableArrayList(formatTable.getAllFormats().get(1)));
+        ComboBox bookFormatCombo = new ComboBox(FXCollections.observableArrayList(formatTable.getAllFormats()));
         root.add(formatTxt, 0, 6);
         root.add(bookFormatCombo, 1, 6);
 
-        Text isbn = new Text("ISBN: ");
-        TextField fillIsbn = new TextField("136932506");
-        root.add(isbn, 0, 1);
-        root.add(fillIsbn, 1, 1);
+//        Text isbn = new Text("ISBN: ");
+//        TextField fillIsbn = new TextField();
+//        root.add(isbn, 0, 1);
+//        root.add(fillIsbn, 1, 1);
 
         Label reviewLbl = new Label("Review: ");
-        TextArea reviewTxtArea = new TextArea("This is a review");
+        TextArea reviewTxtArea = new TextArea();
         root.add(reviewLbl, 0, 7);
         root.add(reviewTxtArea, 1, 7);
 
@@ -86,7 +86,7 @@ public class AddBookTab extends Tab {
         root.add(bookRating, 1, 8);
 
         Label authorLbl = new Label("Author: ");
-        TextField authorTxtField = new TextField("Author name");
+        TextField authorTxtField = new TextField();
         root.add(authorLbl, 0, 9);
         root.add(authorTxtField, 1, 9);
 
