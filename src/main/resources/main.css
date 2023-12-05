@@ -1,10 +1,42 @@
-.label {
+.root {
+    -fx-background-color: #98d4e1;
+    -fx-opacity: 50;
+    -fx-font-family: "Georgia", serif;
+}
+.heading {
+-fx-background-color: rgba(152,212,225, 0.4);
+
+}
+
+.menu-bar {
+    -fx-background-color: #EF7E6B;
+}
+
+}
+.tab-pane .tab{
+    -fx-background-color: #e6e6e6;
+
+}
+
+.tab-pane .tab:selected{
+    -fx-background-color: #98d4e1;
+}
+
+.tab .tab-label {
+    -fx-text-fill: #828282;
+    -fx-font-weight: bold;
+}
+
+.tab:selected .tab-label {
+    -fx-text-fill: #3c3c3c;
+}
+
+.credit {
     -fx-font-size: 32px;
     -fx-text-fill: #EF7E6B;
     -fx-font-weight: bold;
 }
 
-.root {
-    -fx-background-color: #98d4e1;
-    -fx-font-family: "Georgia", serif;
-}
+
+
+
