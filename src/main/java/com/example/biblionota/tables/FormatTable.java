@@ -20,6 +20,10 @@ public class FormatTable implements FormatDAO {
 
     private FormatTable() { db = Database.getInstance(); }
 
+    /**
+     * Select statement to get all formats
+     * @return
+     */
     @Override
     public ArrayList<Format> getAllFormats() {
         String query = "SELECT * FROM " + DBConst.TABLE_FORMAT;
@@ -40,6 +44,11 @@ public class FormatTable implements FormatDAO {
         return null;
     }
 
+    /**
+     * Grab format base on its id
+     * @param id
+     * @return
+     */
     @Override
     public Format getFormat(int id) {
         String query = "SELECT * FROM " + DBConst.TABLE_FORMAT +

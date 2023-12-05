@@ -21,15 +21,31 @@ public class Review {
         this.star_rating = star_rating;
     }
 
+    /**
+     * String, Int Args
+     * @param description
+     * @param star_rating
+     */
     public Review(String description, int star_rating) {
         this.description = description;
         this.star_rating = star_rating;
     }
+
+    /**
+     * String Args
+     * @param description
+     */
     public Review(String description) {
         this.description = description;
 
     }
 
+    /**
+     * Full Args
+     * @param description
+     * @param star_rating
+     * @param id
+     */
     public Review(String description, int star_rating, int id) {
         this.description = description;
         this.star_rating = star_rating;

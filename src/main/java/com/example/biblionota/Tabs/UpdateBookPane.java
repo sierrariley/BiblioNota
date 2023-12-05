@@ -47,6 +47,7 @@ public class UpdateBookPane extends GridPane {
         TagTable tagTable = TagTable.getInstance();
         ReviewTable reviewTable = ReviewTable.getInstance();
 
+        /*Update Heading*/
         Text tag = new Text("Tag:");
         ComboBox<Tag> tags = new ComboBox<>();
         this.add(tag, 0,0);
@@ -72,7 +73,7 @@ public class UpdateBookPane extends GridPane {
         this.add(starRating, 1, 2);
 
 
-
+        /*Button to update all the given content above*/
         Button update = new Button("Update Book!");
         update.setOnAction(e->{
             Review oldReview = reviewTable.getReview(book.getId());

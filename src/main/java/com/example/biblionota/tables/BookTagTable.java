@@ -40,6 +40,11 @@ public class BookTagTable implements BookTagDAO {
         return null;
     }
 
+    /**
+     * Grabs Tag based on id
+     * @param id
+     * @return
+     */
     @Override
     public BookTag getBookTag(int id) {
         String query = "SELECT * FROM " + DBConst.TABLE_BOOK_TAGS +
@@ -60,7 +65,11 @@ public class BookTagTable implements BookTagDAO {
         }
         return null;
     }
-
+    /**
+     * This was needed when creating a book
+     * Because we have a junction table, this method is used to pass those ids to the book
+     * @param bookTag
+     */
     public void createJunction(BookTag bookTag) {
         String query = "INSERT INTO " + DBConst.TABLE_BOOK_TAGS +
                 "(" + DBConst.BOOK_TAGS_COLUMN_BOOK + ", " +

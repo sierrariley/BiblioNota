@@ -21,6 +21,9 @@ public class GenreTable implements GenreDAO {
 
     private GenreTable() { db = Database.getInstance(); }
     @Override
+    /**
+     * Gives all genres in table
+     */
     public ArrayList<Genre> getAllGenres() {
         String query = "SELECT * FROM " + DBConst.TABLE_GENRE;
         genres = new ArrayList<>();
@@ -40,6 +43,12 @@ public class GenreTable implements GenreDAO {
         return null;
     }
 
+
+    /**
+     * Get genre by its id
+     * @param id
+     * @return
+     */
     @Override
     public Genre getGenre(int id) {
         String query = "SELECT * FROM " + DBConst.TABLE_GENRE +
@@ -60,6 +69,10 @@ public class GenreTable implements GenreDAO {
         return null;
     }
 
+    /**
+     * Created a new genre
+     * @param genre
+     */
     @Override
     public void createGenre(Genre genre) {
         String query = "INSERT INTO " + DBConst.TABLE_GENRE +
@@ -74,6 +87,11 @@ public class GenreTable implements GenreDAO {
         }
     }
 
+
+    /**
+     * Updates a genre from table
+     * @param genre
+     */
     @Override
     public void updateGenre(Genre genre) {
         String query = "UPDATE " + DBConst.TABLE_GENRE + " SET " +

@@ -1,5 +1,8 @@
 package com.example.biblionota.pojo;
 
+/**
+ * DatabaseBook Class
+ */
 public class DatabaseBook {
     private int id;
 

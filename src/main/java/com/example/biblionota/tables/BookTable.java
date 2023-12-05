@@ -50,7 +50,9 @@ public class BookTable implements BookDAO {
         }
         return null;
     }
-
+    /**
+     * Insert Statement that grabs all books in table
+     */
     @Override
     public Book getBook(int id) {
         String query = "SELECT * FROM " + DBConst.TABLE_BOOK +
@@ -77,7 +79,11 @@ public class BookTable implements BookDAO {
         }
         return null;
     }
-
+    /**
+     * Creates Book from Book class to add to table
+     *
+     * @param book
+     */
     @Override
     public void createBook(Book book) {
         String query = "INSERT INTO " + DBConst.TABLE_BOOK +
@@ -107,6 +113,10 @@ public class BookTable implements BookDAO {
         }
     }
 
+    /**
+     * Allows user to update the book
+     * @param book
+     */
     @Override
     public void updateBook(Book book) {
         String query = "UPDATE " + DBConst.TABLE_BOOK + " SET " +
@@ -129,6 +139,10 @@ public class BookTable implements BookDAO {
         }
     }
 
+    /**
+     * Allows user to delete book based on it
+     * @param id
+     */
     @Override
     public void deleteBook(int id) {
         //Delete from books_authors where id = xxx
@@ -285,7 +299,11 @@ public class BookTable implements BookDAO {
 
         return pageCounts;
     }
-
+    /**
+     * When nedeing to create a author before creating a new id
+     * This gives you the last id created
+     * @return
+     */
     public int getLastId(){
         int id = -1;
         try{

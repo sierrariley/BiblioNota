@@ -46,6 +46,11 @@ public class AuthorTable implements AuthorDAO {
         return null;
     }
 
+    /**
+     * This gives the id of the author object being used
+     * @param id
+     * @return
+     */
     @Override
     public Author getAuthor(int id) {
         String query = "SELECT * FROM " + DBConst.TABLE_AUTHOR +
@@ -66,6 +71,11 @@ public class AuthorTable implements AuthorDAO {
         return null;
     }
 
+    /**
+     * Creating an author for a book.
+     * Insert statement into table
+     * @param author
+     */
     @Override
     public void createAuthor(Author author) {
         String query = "INSERT INTO " + DBConst.TABLE_AUTHOR +
@@ -80,6 +90,10 @@ public class AuthorTable implements AuthorDAO {
         }
     }
 
+    /**
+     * Instance of table
+     * @return
+     */
     public static AuthorTable getInstance() {
         if(instance == null){
             instance = new AuthorTable();
@@ -87,6 +101,10 @@ public class AuthorTable implements AuthorDAO {
         return instance;
     }
 
+    /**
+     * Used to author from a book
+     * @param id
+     */
     @Override
     public void deleteAuthor(int id) {
         String query = "DELETE FROM " + DBConst.TABLE_AUTHOR + " WHERE " +
@@ -99,6 +117,11 @@ public class AuthorTable implements AuthorDAO {
         }
     }
 
+    /**
+     * When needing to create a author before creating a new id
+     * This gives you the last id created
+     * @return
+     */
     public int getLastId(){
         int id = -1;
         try{

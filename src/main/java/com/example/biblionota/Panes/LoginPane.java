@@ -53,7 +53,9 @@ public class LoginPane extends BorderPane {
         TextField password = new TextField();
         password.setMaxWidth(300);
 
-        //Test Connection Button
+        /**
+         * This button will add the text from textfields into the login.txt
+         */
         Button testConection = new Button("Add Credentials");
         testConection.setOnAction(e -> {
             try {
@@ -92,9 +94,10 @@ public class LoginPane extends BorderPane {
     }
 
     /**
-     *
-     * @param filename
-     * @param input
+     *This method takes in a file name, and a given string
+     * It will write the string to the file
+     * @param filename String
+     * @param input String
      * @throws IOException
      */
     public static void addToFile(String filename, String input) throws IOException {
