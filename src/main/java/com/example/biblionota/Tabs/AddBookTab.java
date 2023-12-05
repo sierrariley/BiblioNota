@@ -9,6 +9,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 
+
+/**
+ * AddBookTab Class extends Tab
+ */
 public class AddBookTab extends Tab {
 
     private static AddBookTab instance;
@@ -65,6 +69,11 @@ public class AddBookTab extends Tab {
         ComboBox bookFormatCombo = new ComboBox(FXCollections.observableArrayList(formatTable.getAllFormats().get(1)));
         root.add(formatTxt, 0, 6);
         root.add(bookFormatCombo, 1, 6);
+
+        Text isbn = new Text("ISBN: ");
+        TextField fillIsbn = new TextField("136932506");
+        root.add(isbn, 0, 1);
+        root.add(fillIsbn, 1, 1);
 
         Label reviewLbl = new Label("Review: ");
         TextArea reviewTxtArea = new TextArea("This is a review");
@@ -133,6 +142,12 @@ public class AddBookTab extends Tab {
 
         Button submitBtn = new Button("Add Book!");
         //This button actions adds all filled out entries into its respective tables
+        /**
+         * In the submit button
+         * grab the review and insert a review into the review table
+         * use last_insert_id to grab the id of that review
+         * insert book and use review id
+         */
         submitBtn.setOnAction(e ->{
 
             Review review1 = new Review(
@@ -150,6 +165,7 @@ public class AddBookTab extends Tab {
                     addGenreCombo.getSelectionModel().getSelectedItem().getId(),
                     ((Format) bookFormatCombo.getSelectionModel().getSelectedItem()).getId(),
                     reviewTable.getLastId());
+
             bookTable.createBook(book);
             int bookLastId = bookTable.getLastId();
 
@@ -175,10 +191,6 @@ public class AddBookTab extends Tab {
         pane.setCenter(root);
         this.setContent(pane);
     }
-
-
-
-
 
     public static AddBookTab getInstance(){
         if(instance == null){

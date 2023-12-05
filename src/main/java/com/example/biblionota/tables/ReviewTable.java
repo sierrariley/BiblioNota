@@ -20,6 +20,10 @@ public class ReviewTable implements ReviewDAO {
     Database db;
     ArrayList<Review> reviews;
 
+    /**
+     *
+     * @return
+     */
     private ReviewTable() { db = Database.getInstance(); }
 
     @Override
@@ -84,9 +88,11 @@ public class ReviewTable implements ReviewDAO {
     @Override
     public void updateReview(Review review) {
         String query = "UPDATE " + DBConst.TABLE_REVIEW + " SET " +
-                DBConst.REVIEW_COLUMN_DESC + "= " + review.getDescription() + ", " +
-                DBConst.REVIEW_COLUMN_STARS + "= " + review.getStar_rating() +
+                DBConst.REVIEW_COLUMN_DESC + " = '" + review.getDescription() + "', " +
+                DBConst.REVIEW_COLUMN_STARS + " = " + review.getStar_rating() +
                 " WHERE " + DBConst.REVIEW_COLUMN_ID + " = " + review.getId();
+
+        System.out.println(query);
         try {
             Statement updateReview = db.getConnection().createStatement();
             updateReview.executeUpdate(query);
@@ -95,6 +101,18 @@ public class ReviewTable implements ReviewDAO {
             e.printStackTrace();
         }
     }
+//    public void updateStarRating(Review review) {
+//        String query = "UPDATE " + DBConst.TABLE_REVIEW + " SET " +
+//                DBConst.REVIEW_COLUMN_STARS + " = " + review.getStar_rating() +
+//                " WHERE " + DBConst.REVIEW_COLUMN_ID + " = " + review.getId();
+//        try {
+//            Statement updateReview = db.getConnection().createStatement();
+//            updateReview.executeUpdate(query);
+//            System.out.println("Record Updated");
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     @Override
     public void deleteReview(int id) {

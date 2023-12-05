@@ -46,6 +46,7 @@ public class HomePage extends BorderPane {
 
         //Add tabs to pane
         tabPane.getTabs().addAll(myBooksTab, addBookTab, graphTab);
+
         tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 
         this.setCenter(tabPane);
