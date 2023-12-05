@@ -4,7 +4,7 @@
     -fx-font-family: "Georgia", serif;
 }
 .heading {
--fx-background-color: #98d4e1;
+-fx-background-color: rgba(152,212,225, 0.4);
 
 }
 
@@ -28,7 +28,13 @@
 }
 
 .tab:selected .tab-label {
+    -fx-text-fill: #3c3c3c;
+}
+
+.credit {
+    -fx-font-size: 32px;
     -fx-text-fill: #EF7E6B;
+    -fx-font-weight: bold;
 }
 
 
