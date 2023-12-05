@@ -15,7 +15,7 @@ public class HelloApplication extends Application {
 
         mainStage = stage;
         mainStage.setTitle("BiblioNota");
-        mainStage.setScene(new HomeScene());
+        mainStage.setScene(new LoginScene());
         mainStage.show();
 
     }
