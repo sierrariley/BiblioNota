@@ -8,5 +8,8 @@ import javafx.scene.Scene;
  * HomeScene
  */
 public class HomeScene extends Scene {
-    public HomeScene() {super(new HomePage(), Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);}
+    public HomeScene() {
+        super(new HomePage(), Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+
+    }
 }

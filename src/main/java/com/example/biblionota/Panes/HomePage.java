@@ -34,6 +34,7 @@ public class HomePage extends BorderPane {
         openCredits.setOnAction(e->{
             HelloApplication.mainStage.setScene(new CreditsScene());
         });
+        menuBar.getStyleClass().add("menu-bar");
 
         //Add MenuItems to MenuBar
         menuBar.getMenus().addAll(fileMenu, credits);
@@ -43,6 +44,12 @@ public class HomePage extends BorderPane {
         MyBooksTab myBooksTab = MyBooksTab.getInstance();
         AddBookTab addBookTab = AddBookTab.getInstance();
         GraphTab graphTab = GraphTab.getInstance();
+
+
+        //StyleSheet
+        tabPane.getStyleClass().add("tab-pane");
+        addBookTab.getStyleClass().add("tab");
+        getStylesheets().add("main.css");
 
         //Add tabs to pane
         tabPane.getTabs().addAll(myBooksTab, addBookTab, graphTab);

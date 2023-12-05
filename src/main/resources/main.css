@@ -1,10 +1,36 @@
-.label {
-    -fx-font-size: 32px;
-    -fx-text-fill: #EF7E6B;
+.root {
+    -fx-background-color: #98d4e1;
+    -fx-opacity: 50;
+    -fx-font-family: "Georgia", serif;
+}
+.heading {
+-fx-background-color: #98d4e1;
+
+}
+
+.menu-bar {
+    -fx-background-color: #EF7E6B;
+}
+
+}
+.tab-pane .tab{
+    -fx-background-color: #e6e6e6;
+
+}
+
+.tab-pane .tab:selected{
+    -fx-background-color: #98d4e1;
+}
+
+.tab .tab-label {
+    -fx-text-fill: #828282;
     -fx-font-weight: bold;
 }
 
-.root {
-    -fx-background-color: #98d4e1;
-    -fx-font-family: "Georgia", serif;
+.tab:selected .tab-label {
+    -fx-text-fill: #EF7E6B;
 }
+
+
+
+
