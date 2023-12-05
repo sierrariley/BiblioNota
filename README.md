@@ -1,4 +1,5 @@
 <p align="center"><img src="src/main/resources/images/logo.png"/> </p>
+
 <h1 style="text-align:center">Welcome to BiblioNota</h1> 
 
 ## Description
