@@ -10,13 +10,25 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 
-public class LoginPane extends GridPane {
-    public LoginPane(){
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+/**
+ * This pane provides a login for the user
+ * Saves their credentials to a file
+ * Connects to their database, creates tables
+ */
+public class LoginPane extends BorderPane {
+    public LoginPane() throws IOException {
+        GridPane grid = new GridPane();
+
         //Create background Image
-        Image background = new Image("images/background.jpg");
+        Image background = new Image("images/background3.png");
         ImageView imageView = new ImageView(background);
         imageView.setPreserveRatio(true);
-        BackgroundSize size = new BackgroundSize(1200,800,true,true,true, false);
+        BackgroundSize size = new BackgroundSize(1200, 800, true, true, true, false);
         this.setBackground(new Background(new BackgroundImage(background, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, size)));
 
         //Logo image
@@ -24,31 +36,68 @@ public class LoginPane extends GridPane {
         logo.setFitHeight(300);
         logo.setFitWidth(400);
 
-        //username
+        //Login Fields
+        Text userText = new Text("Username:");
+        Text passwordText = new Text("Password:");
+        TextField name = new TextField();
+        name.setMaxWidth(300);
         TextField user = new TextField();
         user.setMaxWidth(300);
-        //password
         TextField password = new TextField();
         password.setMaxWidth(300);
 
-        Text userText = new Text("Username");
-        Text passwordText = new Text("Password");
+        //Test Connection Button
+        Button testConection = new Button("Add Credentials");
+        testConection.setOnAction(e -> {
+            try {
+                String userName = user.getText();
+                String passWord = password.getText();
+                addToFile("login.txt", userName);
+                addToFile("login.txt", passWord);
 
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
 
-        this.setAlignment(Pos.CENTER);
-        this.add(logo, 0,0);
-        this.add(user,1,1);
-        this.add(password, 1,2);
-        this.add(userText,0,1);
-        this.add(passwordText,0,2);
-
-        //Login button
+        //Login Button
         Button loginButton = new Button("Login");
-        this.add(loginButton, 0,3);
-        //Send to HomeScene
-        loginButton.setOnMouseClicked(e->{
-            //TODO: Validate username and password
+        loginButton.setOnMouseClicked(e -> {
             HelloApplication.mainStage.setScene(new HomeScene());
         });
+
+        //Place Items on Page
+        grid.add(userText, 0, 2);
+        grid.add(passwordText, 0, 3);
+        grid.add(user, 1, 2);
+        grid.add(password, 1, 3);
+        grid.add(testConection, 0, 4);
+        grid.add(loginButton, 0, 5);
+
+        logo.setTranslateX(380);
+        logo.setTranslateY(150);
+        this.setTop(logo);
+        grid.setAlignment(Pos.TOP_CENTER);
+        grid.setTranslateY(100);
+        grid.setTranslateX(-48);
+        this.setCenter(grid);
+
     }
+
+    /**
+     *
+     * @param filename
+     * @param input
+     * @throws IOException
+     */
+    public static void addToFile(String filename, String input) throws IOException {
+        FileOutputStream add = new FileOutputStream(filename, true);
+        PrintWriter printWriter = new PrintWriter(add);
+        printWriter.println(input);
+        printWriter.flush();
+        printWriter.close();
+    }
+
 }
+
+

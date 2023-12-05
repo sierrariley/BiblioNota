@@ -5,6 +5,7 @@ import com.example.biblionota.database.DBConst;
 import com.example.biblionota.database.Database;
 import com.example.biblionota.pojo.Author;
 import com.example.biblionota.pojo.BookAuthor;
+import com.example.biblionota.pojo.BookTag;
 
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -57,6 +58,21 @@ public class BookAuthorTable implements BookAuthorDAO {
         }
         return null;
     }
+
+    public void createJunction(BookAuthor bookAuthor) {
+        String query = "INSERT INTO " + DBConst.TABLE_BOOK_AUTHOR +
+                "(" + DBConst.BOOK_AUTHOR_COLUMN_BOOK + ", " +
+                DBConst.BOOK_AUTHOR_COLUMN_AUTHOR + ") VALUES ('" +
+                bookAuthor.getBook_id() + "', '" + bookAuthor.getAuthor_id() + "')";
+        try {
+            db.getConnection().createStatement().execute(query);
+            System.out.println("Inserted Junction Record");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
     public static BookAuthorTable getInstance() {
         if(instance == null){

@@ -141,11 +141,11 @@ public class DisplayBook {
      * @return
      */
     public String getTag_names() {
-        if(tag_names == null){
-            return "";
-        }else {
+        if (tag_names != null) {
             return tag_names;
         }
+        return " ";
+
     }
 
     public void setTag_names(String tag_names) {

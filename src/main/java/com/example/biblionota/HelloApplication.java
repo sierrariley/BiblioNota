@@ -1,6 +1,7 @@
 package com.example.biblionota;
 
 import com.example.biblionota.Scenes.HomeScene;
+import com.example.biblionota.Scenes.LoginScene;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -14,7 +15,7 @@ public class HelloApplication extends Application {
 
         mainStage = stage;
         mainStage.setTitle("BiblioNota");
-        mainStage.setScene(new HomeScene());
+        mainStage.setScene(new LoginScene());
         mainStage.show();
 
     }
