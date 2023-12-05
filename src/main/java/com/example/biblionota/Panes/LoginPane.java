@@ -4,6 +4,7 @@ import com.example.biblionota.HelloApplication;
 import com.example.biblionota.Scenes.HomeScene;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -38,6 +39,12 @@ public class LoginPane extends BorderPane {
 
         //Login Fields
         Text userText = new Text("Username:");
+        final PasswordField passwordField = new PasswordField();
+//        passwordField.setOnAction(e ->{
+//            if(!passwordField.getText().equals("T2f$Ay!")){
+//
+//            }
+//        });
         Text passwordText = new Text("Password:");
         TextField name = new TextField();
         name.setMaxWidth(300);
@@ -51,7 +58,7 @@ public class LoginPane extends BorderPane {
         testConection.setOnAction(e -> {
             try {
                 String userName = user.getText();
-                String passWord = password.getText();
+                String passWord = passwordField.getText();
                 addToFile("login.txt", userName);
                 addToFile("login.txt", passWord);
 
@@ -70,7 +77,7 @@ public class LoginPane extends BorderPane {
         grid.add(userText, 0, 2);
         grid.add(passwordText, 0, 3);
         grid.add(user, 1, 2);
-        grid.add(password, 1, 3);
+        grid.add(passwordField, 1, 3);
         grid.add(testConection, 0, 4);
         grid.add(loginButton, 0, 5);
 
