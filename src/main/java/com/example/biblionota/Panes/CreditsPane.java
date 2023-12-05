@@ -40,6 +40,7 @@ public class CreditsPane extends StackPane {
 
         Label freepik = new Label("Background Image from Freepik.com");
 
+        //CSS Styling
         authorTitle.getStyleClass().add("credit");
         authors.getStyleClass().add("credit");
         licenseTitle.getStyleClass().add("credit");
@@ -49,18 +50,18 @@ public class CreditsPane extends StackPane {
         freepik.getStyleClass().add("credit");
         vBox.getStyleClass().add("credit");
 
-
+        //Placing on screen
         hBox1.getChildren().addAll(authorTitle, authors);
         hBox2.getChildren().addAll(licenseTitle, license);
         hBox3.getChildren().addAll(assetsTitle, assets);
         hBox4.getChildren().add(freepik);
-
 
         vBox.getChildren().addAll(hBox1, hBox2, hBox3, hBox4);
         vBox.setAlignment(Pos.CENTER);
         vBox.setSpacing(10);
         vBox.setPadding(new Insets(0, 0, 0, 200));
 
+        //Back Button -> Back to HomePage
         Button backButton = new Button("Back");
         backButton.setOnAction(e->{
             HelloApplication.mainStage.setScene(new HomeScene());

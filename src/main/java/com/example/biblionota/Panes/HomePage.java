@@ -10,6 +10,7 @@ import javafx.scene.layout.*;
 
 /**
  * HomePane
+ * Holds all the tabs and MenuBar
  */
 public class HomePage extends BorderPane {
     public HomePage() {

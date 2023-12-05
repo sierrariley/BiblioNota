@@ -26,6 +26,10 @@ public class ReviewTable implements ReviewDAO {
      */
     private ReviewTable() { db = Database.getInstance(); }
 
+    /**
+     * Gives all reviews from table
+     * @return
+     */
     @Override
     public ArrayList<Review> getAllReviews() {
         String query = "SELECT * FROM " + DBConst.TABLE_REVIEW;
@@ -47,6 +51,11 @@ public class ReviewTable implements ReviewDAO {
         return null;
     }
 
+    /**
+     * Get review by its id
+     * @param id
+     * @return
+     */
     @Override
     public Review getReview(int id) {
         String query = "SELECT * FROM " + DBConst.TABLE_REVIEW +
@@ -68,6 +77,10 @@ public class ReviewTable implements ReviewDAO {
         return null;
     }
 
+    /**
+     * Create a new review for the table
+     * @param review
+     */
     @Override
     public void createReview(Review review) {
         String query = "INSERT INTO " + DBConst.TABLE_REVIEW +
@@ -85,6 +98,10 @@ public class ReviewTable implements ReviewDAO {
         }
     }
 
+    /**
+     * Update a review that has been made
+     * @param review
+     */
     @Override
     public void updateReview(Review review) {
         String query = "UPDATE " + DBConst.TABLE_REVIEW + " SET " +
@@ -114,6 +131,10 @@ public class ReviewTable implements ReviewDAO {
 //        }
 //    }
 
+    /**
+     * Delete a review using its id
+     * @param id
+     */
     @Override
     public void deleteReview(int id) {
         String query = "DELETE FROM " + DBConst.TABLE_REVIEW + " WHERE " +
@@ -126,6 +147,10 @@ public class ReviewTable implements ReviewDAO {
         }
     }
 
+    /**
+     * Grabs last is of review created
+     * @return
+     */
     public int getLastId(){
         int id = -1;
         try{

@@ -18,7 +18,8 @@ public class MyBooksTab extends Tab {
     public TableView tableview;
 
     /**
-     * Java Doc comments here
+     * This tab will display all books in BookTable
+     * It will also allow you to update book when a row is selected
      */
     private MyBooksTab(){
 
@@ -121,7 +122,7 @@ public class MyBooksTab extends Tab {
         tableview.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
 
             /**
-             *
+             *When book is selected, it will show the UpdatePane to update book
              * @param observable
              *            The {@code ObservableValue} which value changed
              * @param oldValue

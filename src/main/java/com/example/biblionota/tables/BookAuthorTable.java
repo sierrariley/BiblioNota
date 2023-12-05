@@ -18,6 +18,9 @@ public class BookAuthorTable implements BookAuthorDAO {
 
     private BookAuthorTable() { db = Database.getInstance(); }
     @Override
+    /**
+     * Insert Statement that grabs all books in table
+     */
     public ArrayList<BookAuthor> getAllBookAuthor() {
         String query = "SELECT * FROM " + DBConst.TABLE_BOOK_AUTHOR;
         booksAuthors = new ArrayList<>();
@@ -39,6 +42,10 @@ public class BookAuthorTable implements BookAuthorDAO {
     }
 
     @Override
+    /**
+     * Gives book author by id
+     * @param id
+     */
     public BookAuthor getBookAuthor(int id) {
         String query = "SELECT * FROM " + DBConst.TABLE_BOOK_AUTHOR +
                 " WHERE " + DBConst.BOOK_AUTHOR_COLUMN_ID + " = " + id;
@@ -59,6 +66,11 @@ public class BookAuthorTable implements BookAuthorDAO {
         return null;
     }
 
+    /**
+     * This was needed when creating a book
+     * Because we have a junction table, this method is used to pass those ids to the book
+     * @param bookAuthor
+     */
     public void createJunction(BookAuthor bookAuthor) {
         String query = "INSERT INTO " + DBConst.TABLE_BOOK_AUTHOR +
                 "(" + DBConst.BOOK_AUTHOR_COLUMN_BOOK + ", " +

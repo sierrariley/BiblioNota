@@ -19,6 +19,10 @@ public class Author {
         this.name = name;
     }
 
+    /**
+     * String Args
+     * @param name
+     */
     public Author(String name) {
         this.name = name;
     }

@@ -90,6 +90,12 @@ public class Database {
         }
     }
 
+    /**
+     * Insert statements for tables that need require general content
+     * GenreTable, TagTable, FormatTabl
+     * users can only choose the populated inserts
+     * @throws SQLException
+     */
     private void insertTableData() throws SQLException {
         Statement insertStatement = connection.createStatement();
 

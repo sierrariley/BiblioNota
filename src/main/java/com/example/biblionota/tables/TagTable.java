@@ -22,6 +22,9 @@ public class TagTable implements TagDAO {
     private TagTable() { db = Database.getInstance(); }
 
     @Override
+    /**
+     * Grab all tags from table
+     */
     public ArrayList<Tag> getAllTags() {
         String query = "SELECT * FROM " + DBConst.TABLE_TAGS;
         tags = new ArrayList<>();
@@ -41,6 +44,11 @@ public class TagTable implements TagDAO {
         return null;
     }
 
+    /**
+     * Get single tag based on its id
+     * @param id
+     * @return
+     */
     @Override
     public Tag getTag(int id) {
         String query = "SELECT * FROM " + DBConst.TABLE_TAGS +
@@ -61,6 +69,10 @@ public class TagTable implements TagDAO {
         return null;
     }
 
+    /**
+     * Create a new tag
+     * @param tag
+     */
     @Override
     public void createTag(Tag tag) {
         String query = "INSERT INTO " + DBConst.TABLE_TAGS +
@@ -75,6 +87,10 @@ public class TagTable implements TagDAO {
         }
     }
 
+    /**
+     * Update a tag already set to a book
+     * @param tag
+     */
     @Override
     public void updateTag(Tag tag) {
         String query = "UPDATE " + DBConst.TABLE_TAGS + " SET " +
@@ -89,6 +105,10 @@ public class TagTable implements TagDAO {
         }
     }
 
+    /**
+     * Delete a tag based on its id
+     * @param id
+     */
     @Override
     public void deleteTag(int id) {
         String query = "DELETE FROM " + DBConst.TABLE_TAGS + " WHERE " +
@@ -108,6 +128,10 @@ public class TagTable implements TagDAO {
         return instance;
     }
 
+    /**
+     * Grabs last id of tag created
+     * @return
+     */
     public int getLastId(){
         int id = -1;
         try{
